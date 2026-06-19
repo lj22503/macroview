@@ -1,10 +1,7 @@
-import '../styles/dashboard.css';
-
 export default function StatusBar({ data }) {
   const vix = data?.fred?.vix?.value;
   const cnUsSpread = (data?.china?.m1m2?.spread || 0);
 
-  // 简化 RISK ON/OFF 计算
   let riskStatus = 'NEUTRAL';
   let confidence = 50;
   let drivers = '数据加载中';
