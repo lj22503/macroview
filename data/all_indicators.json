@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-06-19 14:49:21",
+  "china": {
+    "lpr": {
+      "value": 3.35,
+      "name": "LPR (1年期)"
+    },
+    "m1m2": {
+      "m1_yoy": 5.4,
+      "m2_yoy": 9.2,
+      "spread": -3.8,
+      "name": "M1-M2 剪刀差"
+    }
+  },
+  "fred": {
+    "vix": {"value": 17.44, "name": "VIX"},
+    "dgs10": {"value": 4.42, "name": "10Y美债", "unit": "%"},
+    "dgs2": {"value": 4.89, "name": "2Y美债", "unit": "%"},
+    "pce": {"value": 2.4, "name": "核心PCE", "unit": "%"},
+    "ism": {"value": 48.7, "name": "ISM PMI"},
+    "dxy": {"value": 118.88, "name": "DXY美元指数"},
+    "baml": {"value": 350, "name": "高收益债利差", "unit": "bp"}
+  },
+  "assets": {
+    "sp500": {"value": 7609.78, "name": "S&P 500"},
+    "hs300": {"value": 3982.66, "name": "沪深300"},
+    "gold": {"value": 2321.50, "name": "黄金"},
+    "crude": {"value": 78.42, "name": "原油"},
+    "usd_cnh": {"value": 7.2562, "name": "USD/CNH"}
+  }
+}
