@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19 14:49:21",
+  "updated_at": "2026-06-19 14:53:24",
   "china": {
     "lpr": {
       "value": 3.35,
@@ -13,12 +13,12 @@
     }
   },
   "fred": {
-    "vix": {"value": 17.44, "name": "VIX"},
-    "dgs10": {"value": 4.42, "name": "10Y美债", "unit": "%"},
-    "dgs2": {"value": 4.89, "name": "2Y美债", "unit": "%"},
+    "vix": {"value": 18.44, "name": "VIX"},
+    "dgs10": {"value": 4.49, "name": "10Y美债", "unit": "%"},
+    "dgs2": {"value": 4.2, "name": "2Y美债", "unit": "%"},
     "pce": {"value": 2.4, "name": "核心PCE", "unit": "%"},
     "ism": {"value": 48.7, "name": "ISM PMI"},
-    "dxy": {"value": 118.88, "name": "DXY美元指数"},
+    "dxy": {"value": 119.51, "name": "DXY美元指数"},
     "baml": {"value": 350, "name": "高收益债利差", "unit": "bp"}
   },
   "assets": {
