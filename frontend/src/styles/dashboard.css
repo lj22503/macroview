@@ -191,6 +191,42 @@ body {
   border-color: var(--border-hover);
 }
 
+.card .title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.card .info-btn {
+  cursor: help;
+  font-size: 12px;
+  opacity: 0.6;
+  position: relative;
+}
+
+.card .tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 260px;
+  background: #1a2a3a;
+  border: 1px solid var(--border-hover);
+  border-radius: 10px;
+  padding: 10px 12px;
+  z-index: 100;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  margin-top: 4px;
+}
+
+.card .info-btn:hover .tooltip {
+  display: block;
+}
+
 .card .title {
   font-size: 12px;
   text-transform: uppercase;

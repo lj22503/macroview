@@ -117,6 +117,7 @@ function normalizeAssets(assets, fred) {
   return {
     spx: { value: assets?.spx?.value || fred?.spx?.value, source: 'FRED/yfinance' },
     hs300: { value: assets?.hs300?.value, source: 'yfinance' },
+    hsi: { value: assets?.hsi?.value, source: 'yfinance' },
     gold_spot: { value: assets?.gold_spot?.value || assets?.gold?.value, source: 'yfinance' },
     wti_oil: { value: assets?.wti_oil?.value || assets?.crude?.value, source: 'yfinance' },
     us_10y_yield: { value: fred?.us_10y_yield?.value, unit: '%', source: 'FRED' },
