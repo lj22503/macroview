@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>📊 中国视角 · 全球宏观仪表盘</title>
+    <style>
+        /* ------ 全局重置 & 字体 ------ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0b0e14;
+            color: #e8edf5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ------ 标题栏 ------ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #1e2632;
+            padding-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .update-time {
+            font-size: 14px;
+            color: #8892a8;
+            background: #1a212c;
+            padding: 6px 14px;
+            border-radius: 40px;
+            border: 1px solid #2a3442;
+        }
+        .header .update-time span {
+            color: #6fcf97;
+            -webkit-text-fill-color: #6fcf97;
+        }
+
+        /* ------ 宏观叙事卡片（顶层串联）------ */
+        .narrative-box {
+            background: linear-gradient(145deg, #111a26, #0d131f);
+            border: 1px solid #253040;
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        .narrative-box .tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #6fcf97;
+            background: #1a2e2a;
+            padding: 2px 14px;
+            border-radius: 40px;
+            margin-bottom: 12px;
+            border: 1px solid #2b4a40;
+        }
+        .narrative-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 30px;
+            align-items: center;
+        }
+        .narrative-item {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .narrative-item .label {
+            font-size: 14px;
+            color: #8892a8;
+        }
+        .narrative-item .value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .narrative-item .value.positive { color: #6fcf97; }
+        .narrative-item .value.negative { color: #f28b82; }
+        .narrative-item .value.neutral { color: #f2c94a; }
+
+        .narrative-summary {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #1e2632;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cfd9e6;
+        }
+        .narrative-summary strong {
+            color: #f6d365;
+        }
+
+        /* ------ 宏观五因子评分（总览）------ */
+        .factor-rail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin: 18px 0 8px 0;
+        }
+        .factor-pill {
+            background: #141c28;
+            padding: 6px 16px 6px 12px;
+            border-radius: 40px;
+            border: 1px solid #253040;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .factor-pill .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .dot.green { background: #6fcf97; }
+        .dot.yellow { background: #f2c94a; }
+        .dot.red { background: #f28b82; }
+
+        /* ------ 网格布局（卡片）------ */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #111a26;
+            border: 1px solid #1e2a3a;
+            border-radius: 18px;
+            padding: 18px 20px 20px 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            transition: border 0.2s;
+        }
+        .card:hover {
+            border-color: #35506b;
+        }
+        .card h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #a8b9d0;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card h3 .badge {
+            font-size: 11px;
+            background: #1e2a3a;
+            padding: 2px 12px;
+            border-radius: 40px;
+            color: #8892a8;
+            font-weight: 400;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #18212b;
+        }
+        .metric:last-child {
+            border-bottom: none;
+        }
+        .metric .name {
+            font-size: 14px;
+            color: #bcc8da;
+        }
+        .metric .name small {
+            display: block;
+            font-size: 11px;
+            color: #5a6e89;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+        .metric .value {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: right;
+        }
+        .metric .value .sub {
+            font-size: 13px;
+            font-weight: 400;
+            color: #8892a8;
+            margin-left: 6px;
+        }
+        .value.green { color: #6fcf97; }
+        .value.red { color: #f28b82; }
+        .value.yellow { color: #f2c94a; }
+        .value.blue { color: #7aa9ff; }
+
+        .source {
+            font-size: 11px;
+            color: #3d526b;
+            margin-top: 12px;
+            border-top: 1px dashed #1a232f;
+            padding-top: 10px;
+            letter-spacing: 0.2px;
+        }
+        .source i {
+            font-style: normal;
+            background: #141f2b;
+            padding: 1px 8px;
+            border-radius: 12px;
+        }
+
+        /* ------ 事件流（底部）------ */
+        .event-stream {
+            margin-top: 28px;
+            background: #0d131f;
+            border: 1px solid #1e2a3a;
+            border-radius: 18px;
+            padding: 18px 22px;
+        }
+        .event-stream h3 {
+            font-size: 15px;
+            color: #a8b9d0;
+            margin-bottom: 12px;
+        }
+        .event-item {
+            display: flex;
+            gap: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid #18212b;
+            font-size: 14px;
+        }
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        .event-item .time {
+            color: #5a6e89;
+            white-space: nowrap;
+            min-width: 70px;
+        }
+        .event-item .desc {
+            color: #cfd9e6;
+        }
+        .event-item .risk-high {
+            color: #f28b82;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        /* ------ 响应式 ------ */
+        @media (max-width: 700px) {
+            .header h1 { font-size: 20px; }
+            .narrative-grid { flex-direction: column; align-items: stretch; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ========== 顶栏 ========== -->
+    <div class="header">
+        <h1>📊 中国视角 · 全球宏观仪表盘</h1>
+        <div class="update-time">🔄 数据更新：<span>{{ UPDATE_TIME }}</span></div>
+    </div>
+
+    <!-- ========== 宏观叙事（顶层串联） ========== -->
+    <div class="narrative-box">
+        <div class="tag">🧭 今日宏观叙事</div>
+
+        <!-- 宏观五因子评分条 -->
+        <div class="factor-rail">
+            <span class="factor-pill"><span class="dot green"></span> PMI <strong>{{ PMI_SCORE }}</strong></span>
+            <span class="factor-pill"><span class="dot green"></span> M1-M2 <strong>{{ M1_SCORE }}</strong></span>
+            <span class="factor-pill"><span class="dot yellow"></span> 中美利差 <strong>{{ SPREAD_SCORE }}</strong></span>
+            <span class="factor-pill"><span class="dot green"></span> 人民币 <strong>{{ FX_SCORE }}</strong></span>
+            <span class="factor-pill"><span class="dot yellow"></span> 信用利差 <strong>{{ CREDIT_SCORE }}</strong></span>
+            <span class="factor-pill" style="background:#1f2a38;border-color:#3b5068;">
+                🧮 总分 <strong style="font-size:20px;">{{ TOTAL_SCORE }}</strong>
+            </span>
+        </div>
+
+        <!-- 核心数值 + 方向 -->
+        <div class="narrative-grid">
+            <div class="narrative-item"><span class="label">风险偏好</span><span class="value positive">{{ RISK_BIAS }}</span></div>
+            <div class="narrative-item"><span class="label">置信度</span><span class="value neutral">{{ CONFIDENCE }}%</span></div>
+            <div class="narrative-item"><span class="label">建议仓位</span><span class="value positive">{{ SUGGESTED_POSITION }}</span></div>
+            <div class="narrative-item"><span class="label">主要驱动</span><span class="value" style="font-weight:400;color:#bcc8da;">{{ PRIMARY_DRIVER }}</span></div>
+        </div>
+
+        <!-- 人话总结 -->
+        <div class="narrative-summary">
+            <strong>📌 一句话总结：</strong> {{ NARRATIVE_SUMMARY }}
+        </div>
+    </div>
+
+    <!-- ========== 卡片网格 ========== -->
+    <div class="grid">
+
+        <!-- 模块一：顶层概览（全球风险+资金流） -->
+        <div class="card">
+            <h3>🌍 顶层概览 <span class="badge">Risk / Flow</span></h3>
+            <div class="metric"><span class="name">VIX 恐慌指数 <small>美股隐含波动率</small></span><span class="value blue">{{ VIX }} <span class="sub">{{ VIX_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">MOVE 债市波动 <small>美债恐慌温度计</small></span><span class="value blue">{{ MOVE }} <span class="sub">{{ MOVE_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">GPR 地缘风险 <small>媒体报道冲突密度</small></span><span class="value yellow">{{ GPR }} <span class="sub">{{ GPR_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">北向资金 3日累计 <small>外资净买入A股</small></span><span class="value green">{{ NORTH_MONEY }}亿 <span class="sub">{{ NORTH_STATUS }}</span></span></div>
+            <div class="source"><i>📊 FRED / AKShare</i></div>
+        </div>
+
+        <!-- 模块二：中国内核 -->
+        <div class="card">
+            <h3>🇨🇳 中国内核 <span class="badge">景气 · 通胀 · 信用</span></h3>
+            <div class="metric"><span class="name">官方制造业PMI <small>经济冷热（>50扩张）</small></span><span class="value green">{{ CN_PMI }} <span class="sub">{{ CN_PMI_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">CPI同比 <small>居民通胀（<1%通缩）</small></span><span class="value yellow">{{ CN_CPI }}% <span class="sub">{{ CN_CPI_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">PPI同比 <small>工业出厂价格</small></span><span class="value red">{{ CN_PPI }}% <span class="sub">{{ CN_PPI_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">社融存量同比 <small>信用扩张总闸门</small></span><span class="value green">{{ CN_SOCIAL }}% <span class="sub">{{ CN_SOCIAL_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">⭐ M1-M2剪刀差 <small>资金活化（收窄=牛市）</small></span><span class="value green">{{ CN_M1M2 }}% <span class="sub">{{ CN_M1M2_STATUS }}</span></span></div>
+            <div class="source"><i>📊 AKShare / 中国人民银行</i></div>
+        </div>
+
+        <!-- 模块三：全球宏观 -->
+        <div class="card">
+            <h3>🌐 全球宏观 <span class="badge">外部环境过滤器</span></h3>
+            <div class="metric"><span class="name">美国ISM制造业PMI <small>全球经济风向标</small></span><span class="value green">{{ US_ISM }} <span class="sub">{{ US_ISM_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">⭐ 美国核心PCE同比 <small>美联储降息开关</small></span><span class="value yellow">{{ US_PCE }}% <span class="sub">{{ US_PCE_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">美联储资产负债表 <small>QE/QT力度</small></span><span class="value blue">{{ US_BALANCE }}T <span class="sub">{{ US_BALANCE_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">ON RRP 隔夜逆回购 <small>过剩流动性蓄水池</small></span><span class="value yellow">{{ US_ONRRP }}B <span class="sub">{{ US_ONRRP_STATUS }}</span></span></div>
+            <div class="source"><i>📊 FRED / BEA</i></div>
+        </div>
+
+        <!-- 模块四：美元与流动性 -->
+        <div class="card">
+            <h3>💵 美元 · 流动性 <span class="badge">水位计</span></h3>
+            <div class="metric"><span class="name">DXY 美元指数 <small>>105强势美元</small></span><span class="value red">{{ DXY }} <span class="sub">{{ DXY_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">⭐ 中美10Y利差 <small>资本流向总开关</small></span><span class="value yellow">{{ CN_US_SPREAD }}bp <span class="sub">{{ SPREAD_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">USD/CNH 离岸人民币 <small>>7.30贬值压力</small></span><span class="value yellow">{{ USDCNH }} <span class="sub">{{ USDCNH_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">USD/JPY 美日汇率 <small>套息交易温度计</small></span><span class="value blue">{{ USDJPY }} <span class="sub">{{ USDJPY_STATUS }}</span></span></div>
+            <div class="source"><i>📊 FRED / yfinance / 中国货币网</i></div>
+        </div>
+
+        <!-- 模块五：全球核心资产 -->
+        <div class="card">
+            <h3>📈 全球核心资产 <span class="badge">配置池</span></h3>
+            <div class="metric"><span class="name">标普500 <small>全球风险之锚</small></span><span class="value green">{{ SPX }} <span class="sub">{{ SPX_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">沪深300 <small>A股大盘基准</small></span><span class="value green">{{ HS300 }} <span class="sub">{{ HS300_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">恒生指数 <small>离岸中国资产</small></span><span class="value yellow">{{ HSI }} <span class="sub">{{ HSI_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">黄金现货 <small>避险+实际利率</small></span><span class="value green">{{ GOLD }} <span class="sub">{{ GOLD_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">WTI原油 <small>>90压制制造业</small></span><span class="value red">{{ WTI }} <span class="sub">{{ WTI_STATUS }}</span></span></div>
+            <div class="source"><i>📊 yfinance / FRED</i></div>
+        </div>
+
+        <!-- 模块六：波动率与风险 -->
+        <div class="card">
+            <h3>⚠️ 波动率 · 风险 <span class="badge">风控层</span></h3>
+            <div class="metric"><span class="name">⭐ 美国高收益债利差 <small>信用危机先兆</small></span><span class="value yellow">{{ HY_SPREAD }}bp <span class="sub">{{ HY_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">TED利差 <small>银行间信任危机</small></span><span class="value green">{{ TED_SPREAD }}bp <span class="sub">{{ TED_STATUS }}</span></span></div>
+            <div class="metric"><span class="name">A股隐含波动率 <small>中国VIX</small></span><span class="value yellow">{{ CN_VIX }} <span class="sub">{{ CN_VIX_STATUS }}</span></span></div>
+            <div class="source"><i>📊 FRED / 中证指数</i></div>
+        </div>
+    </div>
+
+    <!-- ========== 模块七：实时事件流 ========== -->
+    <div class="event-stream">
+        <h3>📡 实时事件流 <span style="font-weight:400;font-size:13px;color:#5a6e89;">（导火索监测）</span></h3>
+        <div class="event-item"><span class="time">今日 09:30</span><span class="desc">🇨🇳 中国6月官方制造业PMI 发布 <span class="risk-high">🔴 高风险</span></span></div>
+        <div class="event-item"><span class="time">今日 20:30</span><span class="desc">🇺🇸 美国5月核心PCE 发布 <span class="risk-high">🔴 高风险</span></span></div>
+        <div class="event-item"><span class="time">明日 15:00</span><span class="desc">🇪🇺 欧洲央行行长拉加德 讲话 <span class="risk-high" style="color:#f2c94a;">🟡 中风险</span></span></div>
+        <div class="event-item"><span class="time">-- 待定 --</span><span class="desc">🇮🇷 美伊谈判进展 · 关注原油跳涨风险</span></div>
+        <div class="source" style="border-top:1px solid #1a232f;padding-top:10px;margin-top:4px;"><i>📊 Trading Economics / 金十数据</i></div>
+    </div>
+
+    <!-- 脚注 -->
+    <div style="margin-top:30px;font-size:12px;color:#3d526b;text-align:center;border-top:1px solid #18212b;padding-top:18px;">
+        数据仅供宏观参考，不构成投资建议。所有数据为模拟占位，接入真实数据源后自动刷新。
+    </div>
+
+</div>
+</body>
+</html>

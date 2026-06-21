@@ -1,0 +1,377 @@
+## 一、后端 API 端点设计方案
+
+建议采用 **“统一全景接口 + 独立模块接口”** 的双层设计，兼顾首屏加载效率和模块独立查询需求。
+
+### 1.1 统一全景接口（推荐首屏使用）
+
+`GET /api/v1/dashboard`
+
+返回完整的仪表盘数据，一次性满足前端所有模块渲染需求。
+
+```json
+{
+  "meta": {
+    "updated_at": "2026-06-21T09:00:00+08:00",
+    "data_date": "2026-06-20",
+    "status": "success"
+  },
+  "overview": {
+    "bias": "RISK_ON",
+    "confidence": 68,
+    "score": 1.2,
+    "primary_driver": ["中美利差收窄", "M1-M2剪刀差改善", "VIX正常"],
+    "suggested_equity": 65,
+    "narrative": "国内流动性改善叠加外部压力缓解，温和复苏延续..."
+  },
+  "china_core": { ... },
+  "global_macro": { ... },
+  "fx_liquidity": { ... },
+  "assets": { ... },
+  "risk_monitor": { ... },
+  "events": [ ... ]
+}
+```
+
+**优点**：一次请求，全量渲染；缺点：数据量大（但60+指标JSON通常<50KB，可接受）。
+
+### 1.2 独立模块接口（按需使用）
+
+| 端点 | 返回内容 | 适用场景 |
+|---|---|---|
+| `GET /api/v1/overview` | 顶层决策锚点（bias/confidence/score/primary_driver/仓位建议/叙事文本） | 顶部状态栏单独刷新 |
+| `GET /api/v1/china-core` | PMI、CPI/PPI、社融、M1-M2剪刀差、LPR | 国内宏观模块 |
+| `GET /api/v1/global-macro` | 美国ISM PMI、核心PCE、美联储资产负债表、ON RRP | 外部环境模块 |
+| `GET /api/v1/fx-liquidity` | DXY、中美利差、USD/CNH、USD/JPY | 汇率与流动性模块 |
+| `GET /api/v1/assets` | 标普500、沪深300、黄金、原油、10Y美债 | 核心资产行情模块 |
+| `GET /api/v1/risk` | VIX、MOVE、高收益债利差、A股隐含波动率 | 风控监测模块 |
+| `GET /api/v1/events` | 经济日历、实时快讯 | 事件流模块 |
+
+### 1.3 `/api/v1/overview` 详细字段定义
+
+```json
+{
+  "overview": {
+    "bias": "RISK_ON",                    // 枚举: RISK_ON / RISK_OFF / NEUTRAL
+    "confidence": 68,                     // 整数 0-100
+    "score": 1.2,                         // 浮点数 -2.0 ~ +2.0
+    "primary_driver": [                   // 主要驱动因素列表
+      "中美利差收窄",
+      "M1-M2剪刀差改善",
+      "VIX正常区间"
+    ],
+    "suggestions": {
+      "equity": 65,                       // 权益建议仓位 %
+      "bond": 25,                         // 债券建议仓位 %
+      "gold": 10,                         // 黄金建议仓位 %
+      "cash": 0                           // 现金建议仓位 %
+    },
+    "narrative": "国内流动性改善叠加外部压力缓解，温和复苏延续，建议偏进攻配置。",
+    "factor_details": {                   // 各因子详情，便于追溯
+      "cn_us_spread": { "signal": 1, "weight": 0.20, "contribution": 0.20 },
+      "m1_m2_spread": { "signal": 1, "weight": 0.25, "contribution": 0.25 },
+      "vix": { "signal": 1, "weight": 0.15, "contribution": 0.15 },
+      "north_money": { "signal": 0, "weight": 0.15, "contribution": 0 },
+      "credit_spread": { "signal": 0, "weight": 0.25, "contribution": 0 }
+    },
+    "updated_at": "2026-06-21T09:00:00+08:00"
+  }
+}
+```
+
+
+## 二、信号合成权重
+
+RISK_ON_SCORE 的计算分为两步：
+
+**Step 1：各因子独立打分（-2 到 +2）**
+
+| 因子 | 权重符号 | 打分规则 | 当前状态（2026-06-21） | 得分 |
+|---|---|---|---|---|
+| 中美利差信号 | w1 | +2（利差>-150bp且收窄）→ +1（-200~-150bp且收窄）→ 0（-250~-200bp持平）→ -1（<-250bp走阔）→ -2（<-300bp加速走阔） | 约-205bp，近月收窄 | **+1** |
+| M1-M2剪刀差信号 | w2 | +2（收窄且>-3%）→ +1（收窄但<-3%）→ 0（持平）→ -1（走阔但>-8%）→ -2（走阔且<-8%） | 持续收窄，约-4.8% | **+1** |
+| VIX信号 | w3 | +2（<14）→ +1（14-18）→ 0（18-22）→ -1（22-28）→ -2（>28） | 约16.5 | **+1** |
+| 北向资金信号 | w4 | +2（3日累计>100亿）→ +1（>50亿）→ 0（-50~+50亿）→ -1（<-50亿）→ -2（<-100亿） | 近期温和流入 | **+1** |
+| 信用利差信号 | w5 | +2（<350bp）→ +1（350-450bp）→ 0（450-550bp）→ -1（550-700bp）→ -2（>700bp） | 约420bp | **+1** |
+
+**Step 2：加权合成**
+
+各因子权重基于当前宏观背景（中美利差倒挂+国内弱复苏）设定：
+
+| 因子 | 权重 | 理由 |
+|---|---|---|
+| 中美利差信号 | **20%** | 决定外资行为，是当前市场核心矛盾（倒挂修复节奏） |
+| M1-M2剪刀差信号 | **25%** | 决定国内增量资金，权重最高——它是“水牛”能否启动的根本 |
+| VIX信号 | **15%** | 反映全球风险偏好，是仓位调整的辅助指标 |
+| 北向资金信号 | **15%** | 反映外资即时态度，但对冲属性强（与利差高度相关），不宜过高权重 |
+| 信用利差信号 | **25%** | 系统性风险开关，权重大但平时为0分，关键时刻发挥截断作用 |
+
+**Step 3：代入计算**
+
+```
+RISK_ON_SCORE =
+    0.20 × (+1) +
+    0.25 × (+1) +
+    0.15 × (+1) +
+    0.15 × (+1) +
+    0.25 × (+1)
+= 0.20 + 0.25 + 0.15 + 0.15 + 0.25
+= 1.0
+```
+
+> 注：上述得分基于2026年6月21日宏观状态估算。实际运行中，VIX和北向资金需替换为实时或最新日频数据。
+
+若某因子信号为0分，则其贡献为0。信用利差当前420bp处于“正常”区间，得+1分而非0分，因为低于450bp属于健康水平。若利差升至550bp以上，该因子分数将由正转负，对总分产生拖累。
+
+### 仓位映射逻辑
+
+| 总分范围 | 权益仓位 | 叙事标签 |
+|---|---|---|
+| +1.5 ~ +2.0 | 80% ~ 100% | 全面扩张 |
+| +0.5 ~ +1.5 | 60% ~ 80% | 温和复苏 |
+| -0.5 ~ +0.5 | 40% ~ 60% | 结构分化 |
+| -1.5 ~ -0.5 | 20% ~ 40% | 收缩压力 |
+| -2.0 ~ -1.5 | 0% ~ 20% | 系统性风险 |
+
+
+## 三、API 快速落地建议
+
+```python
+# FastAPI 示例代码框架
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Optional
+
+app = FastAPI()
+
+class OverviewResponse(BaseModel):
+    bias: str          # "RISK_ON" | "RISK_OFF" | "NEUTRAL"
+    confidence: int    # 0-100
+    score: float       # -2.0 ~ 2.0
+    primary_driver: List[str]
+    suggestions: dict
+    narrative: str
+    factor_details: dict
+    updated_at: str
+
+@app.get("/api/v1/overview", response_model=OverviewResponse)
+async def get_overview():
+    # 1. 从数据源拉取最新值
+    # 2. 计算各因子得分
+    # 3. 加权合成总分
+    # 4. 映射仓位和叙事
+    return {...}
+```
+
+### 数据获取任务清单
+
+| 因子 | 数据获取方式 | 更新策略 |
+|---|---|---|
+| 中美利差 | 中债10Y（AKShare）+ 美债10Y（FRED `DGS10`） | 日频，每日08:30拉取 |
+| M1-M2 | AKShare `macro_china_money_supply` | 月频（数据发布日刷新） |
+| VIX | FRED `VIXCLS` 或 yfinance `^VIX` | 日频/实时 |
+| 北向资金 | AKShare `stock_hsgt_north_net_flow_in` | 日频（盘后） |
+| 信用利差 | FRED `BAMLH0A0HYM2` | 日频 |
+
+**关键约束**：M1-M2为月频数据（次月中旬发布），当月无新数据时沿用上月值。信用利差数据在FRED上可能有2天延迟，需在API响应中标注`data_date`字段，便于前端展示数据新鲜度。
+
+
+简报模板：
+## 每日宏观简报 · 生成模板
+
+
+### 一、简报结构（三段式）
+
+简报分成 **“总—分—结”** 三个板块，5分钟读完，便于投顾转发给客户：
+
+| 板块 | 内容 | 目的 |
+|---|---|---|
+| **① 一句话观点（封面）** | 宏观状态标签 + 总分 + 核心结论（15字以内） | 让客户3秒知道结论 |
+| **② 逻辑拆解（内页）** | 各因子得分 + 变化方向 + 简单归因（3-5个要点） | 让客户知道“为什么这么看” |
+| **③ 配置建议（结尾）** | 股/债/金/现仓位比例 + 1-2句风险提示 | 让客户知道“怎么做” |
+
+
+### 二、简报模板（可直接复制使用）
+
+
+#### 📋 每日宏观简报 · {{DATE}}
+
+**{{MACRO_LABEL}}** · 总分 {{SCORE}} / 2.0 · 权益建议仓位 {{EQUITY_PCT}}%
+
+**核心观点：** {{ONE_SENTENCE_SUMMARY}}
+
+
+#### 📌 逻辑拆解（当前驱动因素）
+
+| 因子 | 信号 | 变化方向 | 简评 |
+|---|---|---|---|
+| 中美利差 | {{SPREAD_SIGNAL}} | {{SPREAD_TREND}} | {{SPREAD_COMMENT}} |
+| M1-M2剪刀差 | {{M1_SIGNAL}} | {{M1_TREND}} | {{M1_COMMENT}} |
+| VIX恐慌指数 | {{VIX_SIGNAL}} | {{VIX_TREND}} | {{VIX_COMMENT}} |
+| 北向资金 | {{NORTH_SIGNAL}} | {{NORTH_TREND}} | {{NORTH_COMMENT}} |
+| 信用利差 | {{CREDIT_SIGNAL}} | {{CREDIT_TREND}} | {{CREDIT_COMMENT}} |
+
+**主要驱动：** {{PRIMARY_DRIVERS}}
+
+
+#### 🎯 配置建议
+
+| 资产类别 | 建议仓位 | 说明 |
+|---|---|---|
+| 权益（A股） | {{EQUITY_PCT}}% | {{EQUITY_NOTE}} |
+| 债券 | {{BOND_PCT}}% | {{BOND_NOTE}} |
+| 黄金 | {{GOLD_PCT}}% | {{GOLD_NOTE}} |
+| 现金 | {{CASH_PCT}}% | {{CASH_NOTE}} |
+
+**风险提示：** {{RISK_WARNING}}
+
+
+*数据来源：FRED / AKShare / 中债信息网 · 数据日期 {{DATA_DATE}}*
+
+
+### 三、字段填充规则（含当前真实数据示例）
+
+以2026年6月21日为例：
+
+| 字段 | 数据来源 | 示例值 |
+|---|---|---|
+| `{{DATE}}` | 系统日期 | 2026年6月21日 |
+| `{{DATA_DATE}}` | 各指标最新数据日期 | 2026年6月20日 |
+| `{{MACRO_LABEL}}` | 总分映射 | ⛅ 温和复苏（偏进攻） |
+| `{{SCORE}}` | 加权合成 | +1.0 |
+| `{{EQUITY_PCT}}` | 总分映射 | 65% |
+| `{{ONE_SENTENCE_SUMMARY}}` | 人工或LLM生成 | 国内流动性改善叠加外部压力缓解，温和复苏延续，建议偏进攻配置。 |
+
+**各因子填充示例：**
+
+| 字段 | 示例值 | 说明 |
+|---|---|---|
+| `{{SPREAD_SIGNAL}}` | +1 | 当前得分 |
+| `{{SPREAD_TREND}}` | ↑ 收窄 | 方向箭头 |
+| `{{SPREAD_COMMENT}}` | 中美利差-205bp，近月收窄15bp，外资回流趋势延续 | 一句话解读 |
+| `{{M1_SIGNAL}}` | +1 | — |
+| `{{M1_TREND}}` | ↑ 收窄 | — |
+| `{{M1_COMMENT}}` | M1-M2剪刀差-4.8%，持续收窄，资金活化迹象明确 | — |
+| `{{VIX_SIGNAL}}` | +1 | — |
+| `{{VIX_TREND}}` | → 平稳 | — |
+| `{{VIX_COMMENT}}` | VIX 16.5，正常区间，市场情绪稳定 | — |
+| `{{NORTH_SIGNAL}}` | +1 | — |
+| `{{NORTH_TREND}}` | ↑ 流入 | — |
+| `{{NORTH_COMMENT}}` | 北向资金连续3日净流入，累计约+86亿 | — |
+| `{{CREDIT_SIGNAL}}` | +1 | — |
+| `{{CREDIT_TREND}}` | → 平稳 | — |
+| `{{CREDIT_COMMENT}}` | 高收益债利差420bp，信用环境健康 | — |
+| `{{PRIMARY_DRIVERS}}` | 中美利差收窄、M1-M2剪刀差改善、VIX正常 | 取正分因子中权重最高的2-3个 |
+| `{{EQUITY_NOTE}}` | 经济复苏+流动性改善，超配顺周期及科技成长 | — |
+| `{{BOND_PCT}}` | 25% | 100 - equity - gold - cash |
+| `{{BOND_NOTE}}` | 利率下行空间有限，短久期为主 | — |
+| `{{GOLD_PCT}}` | 10% | 避险对冲，标配 |
+| `{{GOLD_NOTE}}` | 实际利率下行+地缘风险，标配黄金 | — |
+| `{{CASH_PCT}}` | 0% | 机会成本高，暂不保留现金 |
+| `{{CASH_NOTE}}` | 宏观环境偏暖，现金仓位降至最低 | — |
+| `{{RISK_WARNING}}` | 关注6月25日美国核心PCE数据，若超预期可能引发流动性收紧 | 结合事件流模块生成 |
+
+
+### 四、不同宏观状态下的简报示例
+
+#### 场景A：全面扩张（得分 +1.7）
+
+```
+🌞 全面扩张 · 总分 1.7 / 2.0 · 权益建议仓位 85%
+
+核心观点：经济复苏+流动性充裕+外资回流，三重共振，全面超配权益资产。
+
+| 因子 | 信号 | 变化 | 简评 |
+| 中美利差 | +2 | ↑ 收窄 | 利差收窄至-180bp，外资加速回流 |
+| M1-M2剪刀差 | +2 | ↑ 收窄 | 剪刀差收窄至-2.5%，企业投资意愿强烈 |
+| VIX | +2 | ↓ 回落 | VIX 12.8，极度平静，风险偏好高 |
+| 北向资金 | +2 | ↑ 流入 | 连续5日净流入，累计超200亿 |
+| 信用利差 | +1 | → 平稳 | 380bp，信用环境宽松 |
+
+配置建议：权益85% / 债券10% / 黄金5% / 现金0%
+```
+
+#### 场景B：收缩压力（得分 -0.8）
+
+```
+🌧️ 收缩压力 · 总分 -0.8 / 2.0 · 权益建议仓位 30%
+
+核心观点：内外需承压，市场缺乏增量资金，降低仓位以防御为主。
+
+| 因子 | 信号 | 变化 | 简评 |
+| 中美利差 | -1 | ↓ 走阔 | 利差扩大至-280bp，资本外逃压力加剧 |
+| M1-M2剪刀差 | -2 | ↓ 走阔 | 剪刀差扩大至-10%，资金严重沉淀 |
+| VIX | -1 | ↑ 上升 | VIX 26，恐慌情绪升温 |
+| 北向资金 | -1 | ↓ 流出 | 连续5日净流出，累计超150亿 |
+| 信用利差 | -1 | ↑ 走扩 | 650bp，信用风险显著上升 |
+
+配置建议：权益30% / 债券40% / 黄金15% / 现金15%
+```
+
+
+### 五、Agent 生成简报的伪代码
+
+```python
+def generate_daily_brief(score_result, event_data):
+    """
+    score_result: 来自信号合成引擎的输出
+    event_data: 来自事件流模块的近期待发布数据
+    """
+    # 1. 映射宏观标签
+    label = map_score_to_label(score_result.total)
+    
+    # 2. 生成各因子解读
+    factor_comments = []
+    for factor in score_result.factors:
+        comment = {
+            "name": factor.name,
+            "signal": factor.signal,
+            "trend": factor.trend,
+            "comment": factor_comment_template(factor)
+        }
+        factor_comments.append(comment)
+    
+    # 3. 提取主要驱动（正分因子中权重最高的2-3个）
+    primary_drivers = extract_drivers(factor_comments)
+    
+    # 4. 生成配置建议
+    allocation = map_score_to_allocation(score_result.total)
+    
+    # 5. 风险提示（从事件流中提取近期待发布的高风险事件）
+    risk_warning = extract_risk_warning(event_data)
+    
+    # 6. 一句话核心观点（LLM生成或模板拼接）
+    one_sentence = generate_summary(factor_comments, primary_drivers)
+    
+    # 7. 渲染模板
+    brief = render_template({
+        "date": today(),
+        "label": label,
+        "score": score_result.total,
+        "equity_pct": allocation.equity,
+        "one_sentence": one_sentence,
+        "factors": factor_comments,
+        "primary_drivers": primary_drivers,
+        "bond_pct": allocation.bond,
+        "gold_pct": allocation.gold,
+        "cash_pct": allocation.cash,
+        "risk_warning": risk_warning
+    })
+    
+    return brief
+```
+
+### 六、⚠️ 数据新鲜度约束
+
+以下两个因子受数据发布频率限制，简报生成时需遵守：
+
+| 因子 | 发布频率 | 延迟说明 | 简报中的处理方式 |
+|---|---|---|---|
+| **M1-M2剪刀差** | 月频（次月中旬） | 最新值为上月数据 | 在简报中标注“M1-M2（{{数据月份}}）”，当月无新数据时沿用上月值 |
+| **信用利差** | 日频 | FRED延迟约1-2个交易日 | 在简报底部标注“信用利差数据截至{{数据日期}}” |
+
+具体到当前（2026年6月21日）：
+- **M1-M2**：使用5月数据（约-4.8%），简报中标注`M1-M2剪刀差（5月）-4.8%`
+- **信用利差**：若FRED最新数据仅到6月19日，简报中标注`高收益债利差420bp（数据截至6月19日）`
+
+简报生成时需对每个指标标注`data_date`，避免用户误以为所有数据均为“今天”的实时数据。
+

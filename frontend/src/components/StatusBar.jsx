@@ -1,28 +1,24 @@
 export default function StatusBar({ data }) {
-  const vix = data?.fred?.vix?.value;
-  const cnUsSpread = (data?.china?.m1m2?.spread || 0);
+  // 新 API 结构：data = overview
+  const bias = data?.bias || 'NEUTRAL';
+  const confidence = data?.confidence || 50;
+  const primaryDriver = data?.primary_driver || [];
+  const label = data?.label || '数据加载中';
 
-  let riskStatus = 'NEUTRAL';
-  let confidence = 50;
-  let drivers = '数据加载中';
+  const badgeClass = bias === 'RISK_ON' ? 'risk-on'
+    : bias === 'RISK_OFF' ? 'risk-off' : 'neutral';
 
-  if (data?.updated_at) {
-    const vixScore = vix && vix < 20 ? 30 : vix && vix > 30 ? -20 : 0;
-    const spreadScore = cnUsSpread > -5 ? 20 : cnUsSpread < -8 ? -15 : 0;
-    const total = 50 + vixScore + spreadScore;
-    confidence = Math.min(95, Math.max(30, total));
-    riskStatus = total >= 65 ? 'RISK ON' : total <= 45 ? 'RISK OFF' : 'NEUTRAL';
-    drivers = 'VIX + M1-M2剪刀差';
-  }
-
-  const badgeClass = riskStatus === 'RISK ON' ? 'risk-on'
-    : riskStatus === 'RISK OFF' ? 'risk-off' : 'neutral';
+  const biasText = bias === 'RISK_ON' ? 'RISK ON'
+    : bias === 'RISK_OFF' ? 'RISK OFF' : 'NEUTRAL';
 
   return (
     <div className="status-bar">
-      <div className={`status-badge ${badgeClass}`}>{riskStatus}</div>
+      <div className={`status-badge ${badgeClass}`}>{biasText}</div>
       <div className="confidence">置信度: {confidence}%</div>
-      <div className="drivers">主要驱动: {drivers}</div>
+      <div className="drivers">状态: {label}</div>
+      {primaryDriver.length > 0 && (
+        <div className="drivers">驱动: {primaryDriver.join(' + ')}</div>
+      )}
       <div className="card-meta" style={{ marginLeft: 'auto' }}>
         更新: {data?.updated_at ? new Date(data.updated_at).toLocaleString('zh-CN') : '--'}
       </div>

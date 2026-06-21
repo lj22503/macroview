@@ -249,3 +249,55 @@ body {
   color: var(--text-dim);
   font-size: 13px;
 }
+
+/* 观点徽章 */
+.view-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.view-badge.positive {
+  background: rgba(0, 210, 106, 0.15);
+  color: var(--green);
+}
+.view-badge.negative {
+  background: rgba(246, 70, 93, 0.15);
+  color: var(--red);
+}
+.view-badge.neutral {
+  background: rgba(240, 185, 11, 0.15);
+  color: var(--gold);
+}
+
+/* 评分值 */
+.score-value {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* 观点话术 */
+.card-narrative {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* 指标卡观点 */
+.indicator-view {
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.indicator-view.positive { color: var(--green); }
+.indicator-view.negative { color: var(--red); }
+.indicator-view.neutral { color: var(--gold); }
+
+.indicator-narrative {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  line-height: 1.3;
+}
