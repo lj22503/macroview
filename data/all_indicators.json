@@ -1,22 +1,26 @@
 {
   "meta": {
-    "updated_at": "2026-06-21T14:31:06.273628",
+    "updated_at": "2026-06-21T17:41:44.770613",
     "data_date": "2026-06-21",
     "status": "success"
   },
   "overview": {
-    "bias": "NEUTRAL",
-    "confidence": 30,
-    "score": 0.0,
-    "label": "结构分化",
-    "primary_driver": [],
+    "bias": "RISK_ON",
+    "confidence": 76,
+    "score": 1.05,
+    "label": "温和复苏",
+    "primary_driver": [
+      "M1-M2改善",
+      "北向资金流入",
+      "信用利差正常"
+    ],
     "suggestions": {
-      "equity": 45,
-      "bond": 35,
+      "equity": 65,
+      "bond": 25,
       "gold": 10,
-      "cash": 10
+      "cash": 0
     },
-    "narrative": "，结构分化。",
+    "narrative": "M1-M2改善、北向资金流入、信用利差正常，温和复苏。",
     "factor_details": {
       "cn_us_spread": {
         "signal": 0,
@@ -25,10 +29,10 @@
         "narrative": "中美利差维持现状，外资观望"
       },
       "m1_m2_spread": {
-        "signal": 0,
+        "signal": 1,
         "weight": 0.25,
-        "view": "--",
-        "narrative": "--"
+        "view": "资金活化迹象",
+        "narrative": "M1增速回升，资金活化度提高"
       },
       "vix": {
         "signal": 0,
@@ -37,70 +41,79 @@
         "narrative": "VIX处于历史正常区间"
       },
       "north_money": {
-        "signal": 0,
+        "signal": 2,
         "weight": 0.15,
-        "view": "--",
-        "narrative": "--"
+        "view": "外资大幅流入",
+        "narrative": "聪明钱系统性回补中国头寸"
       },
       "credit_spread": {
-        "signal": 0,
+        "signal": 2,
         "weight": 0.25,
-        "view": "--",
-        "narrative": "--"
+        "view": "信用畅通",
+        "narrative": "企业融资毫无压力，垃圾债市场歌舞升平"
       }
     }
   },
   "china": {
     "cn_pmi_official": {
-      "value": null,
+      "value": 50.0,
       "name": "官方制造业PMI",
       "source": "AKShare"
     },
     "cn_pmi_caixin": {
-      "value": null,
+      "value": 50.1,
       "name": "财新制造业PMI",
       "source": "AKShare"
     },
     "cn_cpi_yy": {
-      "value": null,
+      "value": 1.2,
       "name": "CPI同比",
       "source": "AKShare"
     },
     "cn_ppi_yy": {
-      "value": null,
+      "value": 3.9,
       "name": "PPI同比",
       "source": "AKShare"
     },
     "cn_m1_m2_spread": {
-      "value": null,
+      "value": -3.0999999999999996,
+      "m1_yoy": 5.5,
+      "m2_yoy": 8.6,
+      "spread": -3.0999999999999996,
+      "trend": "持平",
       "name": "M1-M2剪刀差",
       "source": "AKShare"
     },
     "cn_lpr_1y": {
-      "value": null,
+      "value": 5.71,
       "name": "1年期LPR",
       "source": "AKShare"
     },
-    "cn_social_financing": {
+    "cn_10y_yield": {
       "value": null,
-      "name": "社融存量同比",
+      "name": "10Y中债收益率",
       "source": "AKShare"
     },
     "north_money_3d": {
-      "value": null,
+      "value": 192.99,
       "name": "北向资金3日累计",
       "source": "AKShare"
     },
     "north_money": {
-      "value": null,
+      "value": 120.82,
       "name": "北向资金当日",
+      "source": "AKShare"
+    },
+    "cn_social_financing": {
+      "value": null,
+      "name": "新增人民币贷款",
       "source": "AKShare"
     }
   },
   "fred": {
     "vix": {
-      "value": null,
-      "date": null,
+      "value": 18.44,
+      "date": "2026-06-17",
       "name": "vix",
       "source": "FRED"
     },
@@ -111,26 +124,26 @@
       "source": "FRED"
     },
     "us_10y_yield": {
-      "value": null,
-      "date": null,
+      "value": 4.49,
+      "date": "2026-06-17",
       "name": "us_10y_yield",
       "source": "FRED"
     },
     "us_2y_yield": {
-      "value": null,
-      "date": null,
+      "value": 4.2,
+      "date": "2026-06-17",
       "name": "us_2y_yield",
       "source": "FRED"
     },
     "us_core_pce_yy": {
-      "value": null,
-      "date": null,
+      "value": 1.2963,
+      "date": "2026-04-01",
       "name": "us_core_pce_yy",
       "source": "FRED"
     },
     "us_cpi_yy": {
-      "value": null,
-      "date": null,
+      "value": 3.33979,
+      "date": "2026-05-01",
       "name": "us_cpi_yy",
       "source": "FRED"
     },
@@ -141,50 +154,50 @@
       "source": "FRED"
     },
     "fed_balance_sheet": {
-      "value": null,
-      "date": null,
+      "value": 6736424.0,
+      "date": "2026-06-17",
       "name": "fed_balance_sheet",
       "source": "FRED"
     },
     "on_rrp_balance": {
-      "value": null,
-      "date": null,
+      "value": 0.251,
+      "date": "2026-06-18",
       "name": "on_rrp_balance",
       "source": "FRED"
     },
     "fed_funds_rate": {
-      "value": null,
-      "date": null,
+      "value": 3.63,
+      "date": "2026-05-01",
       "name": "fed_funds_rate",
       "source": "FRED"
     },
     "dxy_idx": {
-      "value": null,
-      "date": null,
+      "value": 119.5073,
+      "date": "2026-06-12",
       "name": "dxy_idx",
       "source": "FRED"
     },
     "hy_spread_oas": {
-      "value": null,
-      "date": null,
+      "value": 263.0,
+      "date": "2026-06-17",
       "name": "hy_spread_oas",
       "source": "FRED"
     },
     "ted_spread": {
-      "value": null,
-      "date": null,
+      "value": 0.09,
+      "date": "2022-01-21",
       "name": "ted_spread",
       "source": "FRED"
     },
     "spx": {
-      "value": null,
-      "date": null,
+      "value": 7500.58,
+      "date": "2026-06-18",
       "name": "spx",
       "source": "FRED"
     },
     "btc_usd": {
-      "value": null,
-      "date": null,
+      "value": 64180.0,
+      "date": "2026-06-20",
       "name": "btc_usd",
       "source": "FRED"
     }
