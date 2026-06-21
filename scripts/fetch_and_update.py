@@ -271,14 +271,29 @@ def fetch_china_akshare() -> dict:
         print(f"  [ERROR] 中债收益率: {e}")
         result["cn_10y_yield"] = {"value": None, "name": "10Y中债收益率", "source": "AKShare"}
 
-    # 北向资金 - akshare API 不稳定，跳过
-    print("  [INFO] 北向资金 API 不稳定，跳过")
-    result["north_money_3d"] = {"value": None, "name": "北向资金3日累计", "source": "AKShare"}
-    result["north_money"] = {"value": None, "name": "北向资金当日", "source": "AKShare"}
+    # 北向资金 - 历史数据
+    try:
+        df = ak.stock_hsgt_hist_em(symbol='北向资金')
+        if df is not None and len(df) >= 1:
+            cols = df.columns.tolist()
+            # 找到成交净买额列
+            net_col = [c for c in cols if '净买额' in str(c)][0]
+            # 当日
+            north_today = float(df.iloc[0][net_col])
+            # 3日累计
+            north_3d = sum([float(df.iloc[i][net_col]) for i in range(min(3, len(df)))])
+            result["north_money_3d"] = {"value": round(north_3d, 2), "name": "北向资金3日累计", "source": "AKShare"}
+            result["north_money"] = {"value": round(north_today, 2), "name": "北向资金当日", "source": "AKShare"}
+            print(f"  north_money_3d: {north_3d}亿")
+            print(f"  north_money: {north_today}亿")
+    except Exception as e:
+        print(f"  [ERROR] 北向资金: {e}")
+        result["north_money_3d"] = {"value": None, "name": "北向资金3日累计", "source": "AKShare"}
+        result["north_money"] = {"value": None, "name": "北向资金当日", "source": "AKShare"}
 
-    # 社融 - API 有 SSL 问题，跳过
-    print("  [INFO] 社融 API (mofcom.gov.cn) SSL 错误，跳过")
-    result["cn_social_financing"] = {"value": None, "name": "社融存量同比", "source": "AKShare"}
+    # 社融 - 银行融资 (新增人民币贷款) - 跳过（列名乱码，数据不稳定）
+    print("  [INFO] 社融数据跳过（API不稳定）")
+    result["cn_social_financing"] = {"value": None, "name": "社融增量", "source": "AKShare"}
 
     return result
 
