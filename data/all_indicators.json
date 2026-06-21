@@ -1,16 +1,17 @@
 {
   "meta": {
-    "updated_at": "2026-06-21T15:08:22.856806",
+    "updated_at": "2026-06-21T15:15:11.404523",
     "data_date": "2026-06-21",
     "status": "success"
   },
   "overview": {
     "bias": "RISK_ON",
-    "confidence": 57,
-    "score": 0.75,
+    "confidence": 76,
+    "score": 1.05,
     "label": "温和复苏",
     "primary_driver": [
       "M1-M2改善",
+      "北向资金流入",
       "信用利差正常"
     ],
     "suggestions": {
@@ -19,7 +20,7 @@
       "gold": 10,
       "cash": 0
     },
-    "narrative": "M1-M2改善、信用利差正常，温和复苏。",
+    "narrative": "M1-M2改善、北向资金流入、信用利差正常，温和复苏。",
     "factor_details": {
       "cn_us_spread": {
         "signal": 0,
@@ -40,10 +41,10 @@
         "narrative": "VIX处于历史正常区间"
       },
       "north_money": {
-        "signal": 0,
+        "signal": 2,
         "weight": 0.15,
-        "view": "外资观望",
-        "narrative": "北向资金小幅波动，等待信号明确"
+        "view": "外资大幅流入",
+        "narrative": "聪明钱系统性回补中国头寸"
       },
       "credit_spread": {
         "signal": 2,
@@ -94,12 +95,12 @@
       "source": "AKShare"
     },
     "north_money_3d": {
-      "value": null,
+      "value": 192.99,
       "name": "北向资金3日累计",
       "source": "AKShare"
     },
     "north_money": {
-      "value": null,
+      "value": 120.82,
       "name": "北向资金当日",
       "source": "AKShare"
     },
