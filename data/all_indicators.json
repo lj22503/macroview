@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-06-21T15:15:11.404523",
+    "updated_at": "2026-06-21T17:41:44.770613",
     "data_date": "2026-06-21",
     "status": "success"
   },
@@ -106,7 +106,7 @@
     },
     "cn_social_financing": {
       "value": null,
-      "name": "社融存量同比",
+      "name": "新增人民币贷款",
       "source": "AKShare"
     }
   },
