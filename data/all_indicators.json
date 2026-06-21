@@ -1,31 +1,236 @@
 {
-  "updated_at": "2026-06-19 14:53:24",
-  "china": {
-    "lpr": {
-      "value": 3.35,
-      "name": "LPR (1年期)"
+  "meta": {
+    "updated_at": "2026-06-21T14:33:11.623886",
+    "data_date": "2026-06-21",
+    "status": "success"
+  },
+  "overview": {
+    "bias": "RISK_ON",
+    "confidence": 38,
+    "score": 0.5,
+    "label": "温和复苏",
+    "primary_driver": [
+      "信用利差正常"
+    ],
+    "suggestions": {
+      "equity": 65,
+      "bond": 25,
+      "gold": 10,
+      "cash": 0
     },
-    "m1m2": {
-      "m1_yoy": 5.4,
-      "m2_yoy": 9.2,
-      "spread": -3.8,
-      "name": "M1-M2 剪刀差"
+    "narrative": "信用利差正常，温和复苏。",
+    "factor_details": {
+      "cn_us_spread": {
+        "signal": 0,
+        "weight": 0.2,
+        "view": "利差稳定",
+        "narrative": "中美利差维持现状，外资观望"
+      },
+      "m1_m2_spread": {
+        "signal": 0,
+        "weight": 0.25,
+        "view": "--",
+        "narrative": "--"
+      },
+      "vix": {
+        "signal": 0,
+        "weight": 0.15,
+        "view": "波动正常区间",
+        "narrative": "VIX处于历史正常区间"
+      },
+      "north_money": {
+        "signal": 0,
+        "weight": 0.15,
+        "view": "--",
+        "narrative": "--"
+      },
+      "credit_spread": {
+        "signal": 2,
+        "weight": 0.25,
+        "view": "--",
+        "narrative": "--"
+      }
+    }
+  },
+  "china": {
+    "cn_pmi_official": {
+      "value": null,
+      "name": "官方制造业PMI",
+      "source": "AKShare"
+    },
+    "cn_pmi_caixin": {
+      "value": null,
+      "name": "财新制造业PMI",
+      "source": "AKShare"
+    },
+    "cn_cpi_yy": {
+      "value": null,
+      "name": "CPI同比",
+      "source": "AKShare"
+    },
+    "cn_ppi_yy": {
+      "value": null,
+      "name": "PPI同比",
+      "source": "AKShare"
+    },
+    "cn_m1_m2_spread": {
+      "value": null,
+      "name": "M1-M2剪刀差",
+      "source": "AKShare"
+    },
+    "cn_lpr_1y": {
+      "value": null,
+      "name": "1年期LPR",
+      "source": "AKShare"
+    },
+    "cn_social_financing": {
+      "value": null,
+      "name": "社融存量同比",
+      "source": "AKShare"
+    },
+    "north_money_3d": {
+      "value": null,
+      "name": "北向资金3日累计",
+      "source": "AKShare"
+    },
+    "north_money": {
+      "value": null,
+      "name": "北向资金当日",
+      "source": "AKShare"
     }
   },
   "fred": {
-    "vix": {"value": 18.44, "name": "VIX"},
-    "dgs10": {"value": 4.49, "name": "10Y美债", "unit": "%"},
-    "dgs2": {"value": 4.2, "name": "2Y美债", "unit": "%"},
-    "pce": {"value": 2.4, "name": "核心PCE", "unit": "%"},
-    "ism": {"value": 48.7, "name": "ISM PMI"},
-    "dxy": {"value": 119.51, "name": "DXY美元指数"},
-    "baml": {"value": 350, "name": "高收益债利差", "unit": "bp"}
+    "vix": {
+      "value": 18.44,
+      "date": "2026-06-17",
+      "name": "vix",
+      "source": "FRED"
+    },
+    "move_idx": {
+      "value": null,
+      "date": null,
+      "name": "move_idx",
+      "source": "FRED"
+    },
+    "us_10y_yield": {
+      "value": 4.49,
+      "date": "2026-06-17",
+      "name": "us_10y_yield",
+      "source": "FRED"
+    },
+    "us_2y_yield": {
+      "value": 4.2,
+      "date": "2026-06-17",
+      "name": "us_2y_yield",
+      "source": "FRED"
+    },
+    "us_core_pce_yy": {
+      "value": 129.63,
+      "date": "2026-04-01",
+      "name": "us_core_pce_yy",
+      "source": "FRED"
+    },
+    "us_cpi_yy": {
+      "value": 333.979,
+      "date": "2026-05-01",
+      "name": "us_cpi_yy",
+      "source": "FRED"
+    },
+    "us_ism_pmi": {
+      "value": null,
+      "date": null,
+      "name": "us_ism_pmi",
+      "source": "FRED"
+    },
+    "fed_balance_sheet": {
+      "value": 6736424.0,
+      "date": "2026-06-17",
+      "name": "fed_balance_sheet",
+      "source": "FRED"
+    },
+    "on_rrp_balance": {
+      "value": 0.251,
+      "date": "2026-06-18",
+      "name": "on_rrp_balance",
+      "source": "FRED"
+    },
+    "fed_funds_rate": {
+      "value": 3.63,
+      "date": "2026-05-01",
+      "name": "fed_funds_rate",
+      "source": "FRED"
+    },
+    "dxy_idx": {
+      "value": 119.5073,
+      "date": "2026-06-12",
+      "name": "dxy_idx",
+      "source": "FRED"
+    },
+    "hy_spread_oas": {
+      "value": 2.63,
+      "date": "2026-06-17",
+      "name": "hy_spread_oas",
+      "source": "FRED"
+    },
+    "ted_spread": {
+      "value": 0.09,
+      "date": "2022-01-21",
+      "name": "ted_spread",
+      "source": "FRED"
+    },
+    "spx": {
+      "value": 7500.58,
+      "date": "2026-06-18",
+      "name": "spx",
+      "source": "FRED"
+    },
+    "btc_usd": {
+      "value": 64180.0,
+      "date": "2026-06-20",
+      "name": "btc_usd",
+      "source": "FRED"
+    }
   },
   "assets": {
-    "sp500": {"value": 7609.78, "name": "S&P 500"},
-    "hs300": {"value": 3982.66, "name": "沪深300"},
-    "gold": {"value": 2321.50, "name": "黄金"},
-    "crude": {"value": 78.42, "name": "原油"},
-    "usd_cnh": {"value": 7.2562, "name": "USD/CNH"}
+    "spx": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "hs300": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "hsi": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "nk225": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "gold_spot": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "wti_oil": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "usd_cnh": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    },
+    "usd_jpy": {
+      "value": null,
+      "currency": "USD",
+      "source": "yfinance"
+    }
   }
 }
