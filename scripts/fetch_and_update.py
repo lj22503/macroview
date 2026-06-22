@@ -106,14 +106,14 @@ YF_SYMBOLS = {
 }
 
 def fetch_yfinance(symbol: str, retries: int = 3) -> tuple:
-    """获取 yfinance 数据，带重试"""
+    """获取 yfinance 数据，用 history() 更稳定"""
     for i in range(retries):
         try:
             ticker = yf.Ticker(symbol)
-            info = ticker.fast_info
-            price = info.get("last_price") or info.get("previous_close")
-            currency = str(info.get("currency", "USD"))
-            if price:
+            hist = ticker.history(period="5d")
+            if not hist.empty:
+                price = float(hist["Close"].dropna().iloc[-1])
+                currency = str(ticker.fast_info.currency) if hasattr(ticker.fast_info, 'currency') else "USD"
                 return round(price, 2), currency
             time.sleep(2)
         except Exception as e:
