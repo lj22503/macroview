@@ -1,19 +1,53 @@
-export default function IndicatorCard({ label, value, unit = '', trend = null, view = null, narrative = null }) {
-  const trendColor = trend === 'up' ? 'positive' : trend === 'down' ? 'negative' : '';
-  const signalColor = view ? (view.includes('看多') || view.includes('流入') || view.includes('资本回流') ? 'positive' : view.includes('看空') || view.includes('流出') || view.includes('外逃') ? 'negative' : 'neutral') : '';
+import { useState } from 'react';
+
+export default function IndicatorCard({
+  label,
+  value,
+  unit = '',
+  color = '',
+  change = null,
+  note = null,
+  signal = null,
+  signalText = '',
+  explanation = null,
+}) {
+  const [showTip, setShowTip] = useState(false);
+  const numberColor = color ? `value-${color}` : '';
+  const changeClass = change != null ? (change >= 0 ? 'up' : 'down') : '';
 
   return (
-    <div className="indicator-item">
-      <div className="indicator-label">{label}</div>
-      <div className={`indicator-value ${trendColor || signalColor}`}>
-        {value ?? '--'}
-        {unit && <span className="card-unit">{unit}</span>}
+    <div className="card">
+      <div className="title-row">
+        <div className="title">{label}</div>
+        {explanation && (
+          <button
+            className="info-btn"
+            onClick={() => setShowTip(v => !v)}
+            aria-label={`查看${label}的解释`}
+          >
+            ❓
+            {showTip && (
+              <div className="tooltip" style={{ top: '100%', left: 0 }}>
+                {explanation}
+              </div>
+            )}
+          </button>
+        )}
       </div>
-      {view && (
-        <div className={`indicator-view ${signalColor}`}>{view}</div>
-      )}
-      {narrative && (
-        <div className="indicator-narrative">{narrative}</div>
+      <div>
+        <span className={`number ${numberColor}`}>
+          {value != null ? value : '--'}
+        </span>
+        {unit && <span className="change">{unit}</span>}
+        {change != null && (
+          <span className={`change ${changeClass}`}>
+            {change >= 0 ? '+' : ''}{change}%
+          </span>
+        )}
+      </div>
+      {note && <div className="note">{note}</div>}
+      {signal && (
+        <div className={`signal signal-${signal}`}>{signalText}</div>
       )}
     </div>
   );

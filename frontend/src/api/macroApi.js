@@ -174,3 +174,48 @@ export const fetchVixHistory = (days = 30) => {
   if (!API_BASE) return Promise.reject(new Error('No API configured'));
   return axios.get(`${API_BASE}/api/v1/vix-history`, { params: { days } });
 };
+
+// 兼容层：将新 API 结构映射回旧字段名（Dashboard.jsx 使用）
+export const fetchAllData = async () => {
+  const raw = await fetchDashboard();
+  const { meta, overview, china_core, global_macro, fx_liquidity, assets: newAssets, risk_monitor } = raw;
+  
+  const china = {
+    pmi: china_core?.cn_pmi_official,
+    cpi: china_core?.cn_cpi_yy,
+    ppi: china_core?.cn_ppi_yy,
+    m1m2: china_core?.cn_m1_m2_spread,
+    social: china_core?.cn_social_financing,
+    lpr: china_core?.cn_lpr_1y,
+    north_bound: china_core?.north_money_3d,
+    a_share_iv: risk_monitor?.cn_vix,
+    sentiment: overview?.score != null ? { value: overview.score } : null,
+    confidence: overview?.confidence,
+  };
+  
+  const fred = {
+    vix: risk_monitor?.vix,
+    ism: global_macro?.us_ism_pmi,
+    dxy: fx_liquidity?.dxy_idx,
+    baml: risk_monitor?.hy_spread_oas,
+    move: risk_monitor?.move_idx,
+    dgs10: global_macro?.us_10y_yield,
+    dgs2: global_macro?.us_2y_yield,
+  };
+  
+  const assets = {
+    sp500: newAssets?.spx,
+    hs300: newAssets?.hs300,
+    gold: newAssets?.gold_spot,
+    crude: newAssets?.wti_oil,
+    usd_cnh: fx_liquidity?.usd_cnh,
+  };
+  
+  return {
+    overview,
+    china,
+    fred,
+    assets,
+    updated_at: meta?.updated_at,
+  };
+};
