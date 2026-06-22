@@ -93,8 +93,10 @@ function normalizeFredGlobal(fred) {
   return {
     us_ism_pmi: { value: fred?.us_ism_pmi?.value, source: 'FRED' },
     us_core_pce_yy: { value: fred?.us_core_pce_yy?.value, source: 'FRED' },
+    us_cpi_yy: { value: fred?.us_cpi_yy?.value, source: 'FRED' },
     fed_balance_sheet: { value: fred?.fed_balance_sheet?.value, source: 'FRED' },
     on_rrp_balance: { value: fred?.on_rrp_balance?.value, source: 'FRED' },
+    fed_funds_rate: { value: fred?.fed_funds_rate?.value, source: 'FRED' },
     us_10y_yield: { value: fred?.us_10y_yield?.value, source: 'FRED' },
     us_2y_yield: { value: fred?.us_2y_yield?.value, source: 'FRED' },
   };
@@ -118,8 +120,10 @@ function normalizeAssets(assets, fred) {
     spx: { value: assets?.spx?.value || fred?.spx?.value, source: 'FRED/yfinance' },
     hs300: { value: assets?.hs300?.value, source: 'yfinance' },
     hsi: { value: assets?.hsi?.value, source: 'yfinance' },
+    nk225: { value: assets?.nk225?.value, source: 'yfinance' },
     gold_spot: { value: assets?.gold_spot?.value || assets?.gold?.value, source: 'yfinance' },
     wti_oil: { value: assets?.wti_oil?.value || assets?.crude?.value, source: 'yfinance' },
+    btc_usd: { value: fred?.btc_usd?.value, source: 'FRED' },
     us_10y_yield: { value: fred?.us_10y_yield?.value, unit: '%', source: 'FRED' },
   };
 }

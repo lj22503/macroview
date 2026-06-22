@@ -7,6 +7,7 @@ import '../styles/dashboard.css';
 const FIELD_EXPLANATIONS = {
   // === 中国内核模块 ===
   '官方制造业PMI': '经济体温计。>50=经济在扩张（发热），<50=在收缩（发冷）。每月第一个公布，最领先指标。',
+  '财新制造业PMI': '中小企业+出口景气度。与官方PMI背离时需警惕（可能反映结构分化）。',
   'M1-M2剪刀差': '企业花钱意愿指数。收窄=企业敢花钱，经济变好；走阔=企业躺平，经济萎靡。',
   'CPI同比': '物价涨速。<1%=通缩（东西太便宜），>3%=通胀（东西太贵），1-2%最舒服。',
   'PPI同比': '工厂产品卖得好不好。负值=打折也卖不动（利润承压），正值=能涨价（利润改善）。',
@@ -17,6 +18,8 @@ const FIELD_EXPLANATIONS = {
   // === 全球宏观模块 ===
   '美国ISM PMI': '全球经济风向标。>50=美国经济好（利好全球），<50=美国经济差（拖累全球）。',
   '核心PCE': '美联储最关心的通胀指标。>3%=不能降息（利空），<2.5%=可以降息（利好全球）。',
+  '美国CPI同比': '公众通胀数据，市场波动最大的通胀指标。超预期→股跌债涨。',
+  '联邦基金利率': '美国基准利率（美联储政策利率）。高位=全球流动性收紧。',
   '美联储资产负债表': '全球资金水龙头。扩表=放水（利好），缩表=抽水（利空）。',
   '隔夜逆回购': '市场闲钱多少。规模大=资金充裕，接近0=流动性紧张预警。',
 
@@ -30,8 +33,10 @@ const FIELD_EXPLANATIONS = {
   '标普500': '美股大盘。涨=全球风险偏好高，跌=全球避险。',
   '沪深300': 'A股大盘。中国最大300家公司，A股成绩单。',
   '恒生指数': '港股晴雨表。对全球流动性特别敏感，美元强时港股通常承压。',
+  '日经225': '日本股市。套息交易+出口导向，对全球流动性高度敏感。',
   '黄金': '避险资产。地缘风险+实际利率下行时上涨。',
   'WTI原油': '通胀油门。>90$=通胀压力大（利空），<70$=通胀压力小（利好）。',
+  '比特币': '极致Risk On流动性末梢。流动性极度充裕时上涨，流动性危机时暴跌。',
   '10Y美债收益率': '全球资产定价之锚。收益率上行=利率冲击（利空成长股）。',
   '10Y中债收益率': '人民币资产定价锚。与美债利差影响外资流向。',
 
@@ -219,6 +224,9 @@ export default function Dashboard() {
         <MetricCard title="LPR (1年)" value={china_core.cn_lpr_1y?.value} unit="%" note="企业贷款基准利率" />
         <MetricCard title="社融增量" value={china_core.cn_social_financing?.value ? (china_core.cn_social_financing.value / 1e8).toFixed(0) : '--'} unit="亿" note="实体拿到多少钱" />
         <MetricCard title="北向资金" value={china_core.north_money_3d?.value?.toFixed(0)} unit="亿" note="持续流入=外资看好" signal={fd.north_money?.signal} />
+        <MetricCard title="财新制造业PMI" value={china_core.cn_pmi_caixin?.value} note="中小企业+出口，与官方背离需警惕" />
+      </div>
+      <div className="grid-4">
         <MetricCard title="10Y中债收益率" value={cn10yYield ? (cn10yYield * 100).toFixed(2) : '--'} unit="%" note="人民币资产定价锚" />
       </div>
 
@@ -232,6 +240,10 @@ export default function Dashboard() {
       <div className="grid-4">
         <MetricCard title="美国ISM PMI" value={global_macro.us_ism_pmi?.value} note=">50=扩张，<50=收缩" />
         <MetricCard title="核心PCE" value={global_macro.us_core_pce_yy?.value} unit="%" note="美联储降息开关" />
+        <MetricCard title="美国CPI同比" value={global_macro.us_cpi_yy?.value} unit="%" note="公众通胀数据，超预期→股跌债涨" />
+        <MetricCard title="联邦基金利率" value={global_macro.fed_funds_rate?.value} unit="%" note="美国基准利率，高位=流动性收紧" />
+      </div>
+      <div className="grid-4">
         <MetricCard
           title="美联储资产负债表"
           value={global_macro.fed_balance_sheet?.value ? (global_macro.fed_balance_sheet.value / 1e12).toFixed(1) : '--'}
@@ -271,11 +283,15 @@ export default function Dashboard() {
         <MetricCard title="标普500" value={assets.spx?.value?.toLocaleString()} note="美股大盘" />
         <MetricCard title="沪深300" value={assets.hs300?.value?.toLocaleString()} note="A股大盘基准" />
         <MetricCard title="恒生指数" value={assets.hsi?.value?.toLocaleString()} note="港股晴雨表" />
-        <MetricCard title="黄金" value={assets.gold_spot?.value?.toLocaleString()} unit="$" note="避险资产" />
+        <MetricCard title="日经225" value={assets.nk225?.value?.toLocaleString()} note="对全球流动性高度敏感" />
       </div>
       <div className="grid-4">
+        <MetricCard title="黄金" value={assets.gold_spot?.value?.toLocaleString()} unit="$" note="避险资产" />
+        <MetricCard title="比特币" value={assets.btc_usd?.value?.toLocaleString()} unit="$" note="Risk On流动性末梢" />
         <MetricCard title="WTI原油" value={assets.wti_oil?.value?.toFixed(2)} unit="$" note=">90=通胀压力大" />
         <MetricCard title="10Y美债收益率" value={assets.us_10y_yield?.value} unit="%" note="全球资产定价之锚" />
+      </div>
+      <div className="grid-4">
         <MetricCard title="2Y美债收益率" value={global_macro.us_2y_yield?.value} unit="%" note="短期利率预期" />
         <MetricCard title="10Y中债收益率" value={cn10yYield ? (cn10yYield * 100).toFixed(2) : '--'} unit="%" note="人民币资产定价锚" />
       </div>
