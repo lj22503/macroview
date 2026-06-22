@@ -117,7 +117,7 @@ function normalizeFxLiquidity(fred, assets) {
 
 function normalizeAssets(assets, fred) {
   return {
-    spx: { value: assets?.spx?.value || fred?.spx?.value, source: 'FRED/yfinance' },
+    spx: { value: fred?.spx?.value || assets?.spx?.value, source: 'FRED/yfinance' },
     hs300: { value: assets?.hs300?.value, source: 'yfinance' },
     hsi: { value: assets?.hsi?.value, source: 'yfinance' },
     nk225: { value: assets?.nk225?.value, source: 'yfinance' },
