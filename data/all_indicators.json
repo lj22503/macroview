@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-06-21T17:41:44.770613",
-    "data_date": "2026-06-21",
+    "updated_at": "2026-06-22T15:36:34.306360",
+    "data_date": "2026-06-22",
     "status": "success"
   },
   "overview": {
@@ -106,7 +106,7 @@
     },
     "cn_social_financing": {
       "value": null,
-      "name": "新增人民币贷款",
+      "name": "社融增量",
       "source": "AKShare"
     }
   },
@@ -196,8 +196,8 @@
       "source": "FRED"
     },
     "btc_usd": {
-      "value": 64180.0,
-      "date": "2026-06-20",
+      "value": 63321.17,
+      "date": "2026-06-21",
       "name": "btc_usd",
       "source": "FRED"
     }
