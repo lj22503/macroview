@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchDashboard } from '../api/macroApi';
 import VIXChart from './VIXChart';
 import '../styles/dashboard.css';
