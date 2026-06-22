@@ -1,0 +1,39 @@
+name: Daily Macro Data Update
+
+on:
+  schedule:
+    - cron: '30 0 * * *'   # 北京时间 08:30 = UTC 00:30
+    - cron: '30 6 * * *'   # 北京时间 14:30 = UTC 06:30
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - run: pip install requests pandas yfinance
+
+      - name: Run data fetch
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: lj22503
+          GITHUB_REPO: macroview
+        run: |
+          cd scripts
+          python fetch_and_update_v2.py
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-update macro data {{ date }}"
+          file_pattern: |
+            data/all_indicators.json
+            data/meta.json
+          skip_dirty_check: false
