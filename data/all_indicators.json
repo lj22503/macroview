@@ -1,58 +1,14 @@
 {
   "meta": {
-    "updated_at": "2026-06-22T15:36:34.306360",
-    "data_date": "2026-06-22",
-    "status": "success"
+    "updated_at": "2026-06-23T10:38:10.616879",
+    "data_date": "2026-06-23",
+    "status": "success",
+    "data_freshness": "fresh"
   },
   "overview": {
     "bias": "RISK_ON",
-    "confidence": 76,
-    "score": 1.05,
-    "label": "温和复苏",
-    "primary_driver": [
-      "M1-M2改善",
-      "北向资金流入",
-      "信用利差正常"
-    ],
-    "suggestions": {
-      "equity": 65,
-      "bond": 25,
-      "gold": 10,
-      "cash": 0
-    },
-    "narrative": "M1-M2改善、北向资金流入、信用利差正常，温和复苏。",
-    "factor_details": {
-      "cn_us_spread": {
-        "signal": 0,
-        "weight": 0.2,
-        "view": "利差稳定",
-        "narrative": "中美利差维持现状，外资观望"
-      },
-      "m1_m2_spread": {
-        "signal": 1,
-        "weight": 0.25,
-        "view": "资金活化迹象",
-        "narrative": "M1增速回升，资金活化度提高"
-      },
-      "vix": {
-        "signal": 0,
-        "weight": 0.15,
-        "view": "波动正常区间",
-        "narrative": "VIX处于历史正常区间"
-      },
-      "north_money": {
-        "signal": 2,
-        "weight": 0.15,
-        "view": "外资大幅流入",
-        "narrative": "聪明钱系统性回补中国头寸"
-      },
-      "credit_spread": {
-        "signal": 2,
-        "weight": 0.25,
-        "view": "信用畅通",
-        "narrative": "企业融资毫无压力，垃圾债市场歌舞升平"
-      }
-    }
+    "score": 1.2,
+    "factor_details": {}
   },
   "china": {
     "cn_pmi_official": {
@@ -76,10 +32,10 @@
       "source": "AKShare"
     },
     "cn_m1_m2_spread": {
-      "value": -3.0999999999999996,
+      "value": -3.1,
       "m1_yoy": 5.5,
       "m2_yoy": 8.6,
-      "spread": -3.0999999999999996,
+      "spread": -3.1,
       "trend": "持平",
       "name": "M1-M2剪刀差",
       "source": "AKShare"
@@ -112,136 +68,150 @@
   },
   "fred": {
     "vix": {
-      "value": 18.44,
-      "date": "2026-06-17",
-      "name": "vix",
-      "source": "FRED"
+      "value": 16.78,
+      "source": "FRED",
+      "date": "2026-06-19",
+      "quality": "live"
     },
     "move_idx": {
       "value": null,
+      "source": "unavailable",
       "date": null,
-      "name": "move_idx",
-      "source": "FRED"
+      "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 4.49,
-      "date": "2026-06-17",
-      "name": "us_10y_yield",
-      "source": "FRED"
+      "value": 4.46,
+      "source": "FRED",
+      "date": "2026-06-18",
+      "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.2,
-      "date": "2026-06-17",
-      "name": "us_2y_yield",
-      "source": "FRED"
+      "value": 4.19,
+      "source": "FRED",
+      "date": "2026-06-18",
+      "quality": "live"
     },
     "us_core_pce_yy": {
       "value": 1.2963,
+      "source": "FRED",
       "date": "2026-04-01",
-      "name": "us_core_pce_yy",
-      "source": "FRED"
+      "quality": "live"
     },
     "us_cpi_yy": {
       "value": 3.33979,
+      "source": "FRED",
       "date": "2026-05-01",
-      "name": "us_cpi_yy",
-      "source": "FRED"
+      "quality": "live"
     },
     "us_ism_pmi": {
       "value": null,
+      "source": "unavailable",
       "date": null,
-      "name": "us_ism_pmi",
-      "source": "FRED"
+      "quality": "fallback"
     },
     "fed_balance_sheet": {
       "value": 6736424.0,
+      "source": "FRED",
       "date": "2026-06-17",
-      "name": "fed_balance_sheet",
-      "source": "FRED"
+      "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.251,
-      "date": "2026-06-18",
-      "name": "on_rrp_balance",
-      "source": "FRED"
+      "value": 3.925,
+      "source": "FRED",
+      "date": "2026-06-22",
+      "quality": "live"
     },
     "fed_funds_rate": {
       "value": 3.63,
+      "source": "FRED",
       "date": "2026-05-01",
-      "name": "fed_funds_rate",
-      "source": "FRED"
+      "quality": "live"
     },
     "dxy_idx": {
-      "value": 119.5073,
-      "date": "2026-06-12",
-      "name": "dxy_idx",
-      "source": "FRED"
+      "value": 120.3958,
+      "source": "FRED",
+      "date": "2026-06-18",
+      "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 263.0,
-      "date": "2026-06-17",
-      "name": "hy_spread_oas",
-      "source": "FRED"
+      "value": 266.0,
+      "source": "FRED",
+      "date": "2026-06-19",
+      "quality": "live"
     },
     "ted_spread": {
       "value": 0.09,
+      "source": "FRED",
       "date": "2022-01-21",
-      "name": "ted_spread",
-      "source": "FRED"
+      "quality": "live"
     },
     "spx": {
-      "value": 7500.58,
-      "date": "2026-06-18",
-      "name": "spx",
-      "source": "FRED"
+      "value": 7472.79,
+      "source": "FRED",
+      "date": "2026-06-22",
+      "quality": "live"
     },
     "btc_usd": {
-      "value": 63321.17,
-      "date": "2026-06-21",
-      "name": "btc_usd",
-      "source": "FRED"
+      "value": 63932.91,
+      "source": "FRED",
+      "date": "2026-06-22",
+      "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "value": 7472.79,
+      "source": "FRED",
+      "date": "2026-06-22",
+      "quality": "live"
     },
     "hs300": {
-      "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "value": 5059.658,
+      "source": "AKShare",
+      "date": "2026-06-22",
+      "quality": "live"
     },
     "hsi": {
-      "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "value": 23768.51953,
+      "source": "AKShare",
+      "date": "2026-06-22",
+      "quality": "live"
     },
     "nk225": {
       "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "gold_spot": {
       "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "wti_oil": {
       "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "usd_cnh": {
       "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "usd_jpy": {
       "value": null,
-      "currency": "USD",
-      "source": "yfinance"
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
+    },
+    "btc_usd": {
+      "value": 63932.91,
+      "source": "FRED",
+      "date": "2026-06-22",
+      "quality": "live"
     }
   }
 }
