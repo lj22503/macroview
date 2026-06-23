@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-06-23T20:26:10.155573",
+    "updated_at": "2026-06-23T20:35:04.386000",
     "data_date": "2026-06-23",
     "status": "success",
     "data_freshness": "fresh"
@@ -104,10 +104,10 @@
       "quality": "live"
     },
     "us_ism_pmi": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 48.7,
+      "source": "AKShare",
+      "date": "2025-09-02",
+      "quality": "live"
     },
     "fed_balance_sheet": {
       "value": 6736424.0,
@@ -184,10 +184,10 @@
       "quality": "fallback"
     },
     "gold_spot": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 911.45,
+      "source": "AKShare",
+      "date": "2026-06-21",
+      "quality": "live"
     },
     "wti_oil": {
       "value": 84.65,
@@ -196,10 +196,10 @@
       "quality": "live"
     },
     "usd_cnh": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 6.7866,
+      "source": "AKShare",
+      "date": "2026-06-23",
+      "quality": "live"
     },
     "usd_jpy": {
       "value": null,
