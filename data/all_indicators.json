@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-06-23T10:38:10.616879",
+    "updated_at": "2026-06-23T10:43:59.052664",
     "data_date": "2026-06-23",
     "status": "success",
     "data_freshness": "fresh"
@@ -86,10 +86,10 @@
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.19,
-      "source": "FRED",
-      "date": "2026-06-18",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_core_pce_yy": {
       "value": 1.2963,
@@ -190,10 +190,10 @@
       "quality": "fallback"
     },
     "wti_oil": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 84.65,
+      "source": "FRED",
+      "date": "2026-06-15",
+      "quality": "live"
     },
     "usd_cnh": {
       "value": null,
