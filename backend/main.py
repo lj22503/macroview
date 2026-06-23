@@ -14,6 +14,7 @@ from typing import Optional, Dict, Any
 import requests
 import yfinance as yf
 import pandas as pd
+import numpy as np
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -128,6 +129,32 @@ YF_SYMBOLS = {
     "usd_jpy": "JPY=X",
 }
 
+def fetch_akshare(key: str) -> Optional[dict]:
+    """
+    用 akshare 备援获取资产价格（yfinance 失败时调用）
+    仅覆盖已验证可用的资产：沪深300、恒生指数
+    """
+    try:
+        import akshare as ak
+    except ImportError:
+        return None
+
+    try:
+        if key == "hs300":
+            df = ak.stock_zh_index_daily(symbol="sh000300")
+            if not df.empty:
+                row = df.iloc[-1]
+                return {"price": round(float(row["close"]), 2), "currency": "CNY"}
+        elif key == "hsi":
+            df = ak.stock_hk_index_daily_sina(symbol="HSI")
+            if not df.empty:
+                row = df.iloc[-1]
+                return {"price": round(float(row["close"]), 2), "currency": "HKD"}
+    except Exception as e:
+        print(f"akshare fallback error for {key}: {e}")
+    return None
+
+
 def fetch_yfinance(symbol: str) -> Optional[dict]:
     """从 yfinance 获取资产价格"""
     try:
@@ -188,10 +215,18 @@ def get_dashboard():
     for key, series_id in FRED_SERIES.items():
         fred_data[key] = fetch_fred(series_id)
 
-    # 获取 yfinance 数据
+    # 获取 yfinance 数据（失败则用 akshare 备援）
     assets_data = {}
     for key, symbol in YF_SYMBOLS.items():
-        assets_data[key] = fetch_yfinance(symbol)
+        yf_data = fetch_yfinance(symbol)
+        if yf_data is not None:
+            assets_data[key] = yf_data
+        else:
+            akshare_data = fetch_akshare(key)
+            if akshare_data is not None:
+                assets_data[key] = akshare_data
+            else:
+                assets_data[key] = None
 
     # ===== 信号合成 =====
     # 中美利差计算
@@ -326,9 +361,13 @@ def get_assets():
     """全球核心资产行情"""
     assets = {}
     for key, symbol in YF_SYMBOLS.items():
-        data = fetch_yfinance(symbol)
-        if data:
-            assets[key] = {"value": data["price"], "currency": data["currency"]}
+        yf_data = fetch_yfinance(symbol)
+        if yf_data:
+            assets[key] = {"value": yf_data["price"], "currency": yf_data["currency"]}
+        else:
+            akshare_data = fetch_akshare(key)
+            if akshare_data:
+                assets[key] = {"value": akshare_data["price"], "currency": akshare_data["currency"]}
 
     # 美债收益率单独从 FRED 获取
     assets["us_10y_yield"] = {"value": fetch_fred("DGS10"), "unit": "%"}

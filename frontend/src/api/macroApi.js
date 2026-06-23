@@ -31,11 +31,25 @@ export const fetchDashboard = async () => {
 function normalizeGithubData(raw) {
   const { meta, overview, china, fred, assets } = raw;
 
+  // 计算数据新鲜度
+  const dataDate = meta?.data_date || new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10);
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  let dataFreshness = 'expired';
+  if (dataDate === today) dataFreshness = 'fresh';
+  else if (dataDate === yesterday) dataFreshness = 'stale';
+
   // 构建 factor_details（如果不存在）
   const factorDetails = overview?.factor_details || generateFactorDetails(fred, china);
 
   return {
-    meta: meta || { updated_at: new Date().toISOString(), data_date: new Date().toISOString().slice(0, 10), status: 'success' },
+    meta: {
+      ...(meta || {}),
+      updated_at: meta?.updated_at || new Date().toISOString(),
+      data_date: dataDate,
+      data_freshness: dataFreshness,
+      status: meta?.status || 'success',
+    },
     overview: {
       bias: overview?.bias || 'NEUTRAL',
       confidence: overview?.confidence || 50,
