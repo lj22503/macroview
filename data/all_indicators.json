@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-06-23T14:00:41.330882",
+    "updated_at": "2026-06-23T20:26:10.155573",
     "data_date": "2026-06-23",
     "status": "success",
     "data_freshness": "fresh"
@@ -166,9 +166,9 @@
       "quality": "live"
     },
     "hs300": {
-      "value": 5059.658,
+      "value": 4919.386,
       "source": "AKShare",
-      "date": "2026-06-22",
+      "date": "2026-06-23",
       "quality": "live"
     },
     "hsi": {
