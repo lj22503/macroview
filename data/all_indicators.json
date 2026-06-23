@@ -1,71 +1,16 @@
 {
   "meta": {
-    "updated_at": "2026-06-23T10:43:59.052664",
+    "updated_at": "2026-06-23T13:51:47.258556",
     "data_date": "2026-06-23",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
     "bias": "RISK_ON",
-    "score": 1.2,
+    "score": 0.8,
     "factor_details": {}
   },
-  "china": {
-    "cn_pmi_official": {
-      "value": 50.0,
-      "name": "官方制造业PMI",
-      "source": "AKShare"
-    },
-    "cn_pmi_caixin": {
-      "value": 50.1,
-      "name": "财新制造业PMI",
-      "source": "AKShare"
-    },
-    "cn_cpi_yy": {
-      "value": 1.2,
-      "name": "CPI同比",
-      "source": "AKShare"
-    },
-    "cn_ppi_yy": {
-      "value": 3.9,
-      "name": "PPI同比",
-      "source": "AKShare"
-    },
-    "cn_m1_m2_spread": {
-      "value": -3.1,
-      "m1_yoy": 5.5,
-      "m2_yoy": 8.6,
-      "spread": -3.1,
-      "trend": "持平",
-      "name": "M1-M2剪刀差",
-      "source": "AKShare"
-    },
-    "cn_lpr_1y": {
-      "value": 5.71,
-      "name": "1年期LPR",
-      "source": "AKShare"
-    },
-    "cn_10y_yield": {
-      "value": null,
-      "name": "10Y中债收益率",
-      "source": "AKShare"
-    },
-    "north_money_3d": {
-      "value": 192.99,
-      "name": "北向资金3日累计",
-      "source": "AKShare"
-    },
-    "north_money": {
-      "value": 120.82,
-      "name": "北向资金当日",
-      "source": "AKShare"
-    },
-    "cn_social_financing": {
-      "value": null,
-      "name": "社融增量",
-      "source": "AKShare"
-    }
-  },
+  "china": {},
   "fred": {
     "vix": {
       "value": 16.78,
@@ -86,10 +31,10 @@
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 4.19,
+      "source": "FRED",
+      "date": "2026-06-18",
+      "quality": "live"
     },
     "us_core_pce_yy": {
       "value": 1.2963,
@@ -166,16 +111,16 @@
       "quality": "live"
     },
     "hs300": {
-      "value": 5059.658,
-      "source": "AKShare",
-      "date": "2026-06-22",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "hsi": {
-      "value": 23768.51953,
-      "source": "AKShare",
-      "date": "2026-06-22",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "nk225": {
       "value": null,
