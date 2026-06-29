@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-06-28T09:00:27.731583",
-    "data_date": "2026-06-28",
+    "updated_at": "2026-06-29T09:03:03.849906",
+    "data_date": "2026-06-29",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -97,9 +97,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 59964.66,
+      "value": 59367.05,
       "source": "FRED",
-      "date": "2026-06-27",
+      "date": "2026-06-28",
       "quality": "live"
     }
   },
@@ -153,9 +153,9 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 59964.66,
+      "value": 59367.05,
       "source": "FRED",
-      "date": "2026-06-27",
+      "date": "2026-06-28",
       "quality": "live"
     }
   }
