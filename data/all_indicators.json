@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-06-29T09:03:03.849906",
-    "data_date": "2026-06-29",
+    "updated_at": "2026-06-30T09:00:29.520326",
+    "data_date": "2026-06-30",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -13,9 +13,9 @@
   "china": {},
   "fred": {
     "vix": {
-      "value": 18.89,
+      "value": 18.41,
       "source": "FRED",
-      "date": "2026-06-25",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "move_idx": {
@@ -25,15 +25,15 @@
       "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 4.4,
+      "value": 4.38,
       "source": "FRED",
-      "date": "2026-06-25",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.09,
+      "value": 4.07,
       "source": "FRED",
-      "date": "2026-06-25",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -61,9 +61,9 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 6.426,
+      "value": 3.546,
       "source": "FRED",
-      "date": "2026-06-26",
+      "date": "2026-06-29",
       "quality": "live"
     },
     "fed_funds_rate": {
@@ -73,15 +73,15 @@
       "quality": "live"
     },
     "dxy_idx": {
-      "value": 120.3958,
+      "value": 120.8866,
       "source": "FRED",
-      "date": "2026-06-18",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 278.0,
+      "value": 283.0,
       "source": "FRED",
-      "date": "2026-06-25",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "ted_spread": {
@@ -91,23 +91,23 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7354.02,
+      "value": 7440.43,
       "source": "FRED",
-      "date": "2026-06-26",
+      "date": "2026-06-29",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 59367.05,
+      "value": 60128.09,
       "source": "FRED",
-      "date": "2026-06-28",
+      "date": "2026-06-29",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7354.02,
+      "value": 7440.43,
       "source": "FRED",
-      "date": "2026-06-26",
+      "date": "2026-06-29",
       "quality": "live"
     },
     "hs300": {
@@ -141,9 +141,9 @@
       "quality": "live"
     },
     "usd_cnh": {
-      "value": 6.7686,
+      "value": 6.798,
       "source": "FRED",
-      "date": "2026-06-18",
+      "date": "2026-06-26",
       "quality": "live"
     },
     "usd_jpy": {
@@ -153,9 +153,9 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 59367.05,
+      "value": 60128.09,
       "source": "FRED",
-      "date": "2026-06-28",
+      "date": "2026-06-29",
       "quality": "live"
     }
   }
