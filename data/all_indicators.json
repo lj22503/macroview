@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-07-03T09:01:31.198611",
-    "data_date": "2026-07-03",
+    "updated_at": "2026-07-04T09:03:17.215454",
+    "data_date": "2026-07-04",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -79,9 +79,9 @@
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 274.0,
+      "value": 275.0,
       "source": "FRED",
-      "date": "2026-07-01",
+      "date": "2026-07-02",
       "quality": "live"
     },
     "ted_spread": {
@@ -97,9 +97,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 61422.31,
+      "value": 62537.99,
       "source": "FRED",
-      "date": "2026-07-02",
+      "date": "2026-07-03",
       "quality": "live"
     }
   },
@@ -153,9 +153,9 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 61422.31,
+      "value": 62537.99,
       "source": "FRED",
-      "date": "2026-07-02",
+      "date": "2026-07-03",
       "quality": "live"
     }
   }
