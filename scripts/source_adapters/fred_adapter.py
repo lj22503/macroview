@@ -22,7 +22,7 @@ FRED_SERIES = {
     "us_2y_yield": "DGS2",
     "us_core_pce_yy": "PCEPILFE",
     "us_cpi_yy": "CPIAUCSL",
-    "us_ism_pmi": "ISMINDUS",
+    "us_ism_pmi": "NAPMPMI",
     "fed_balance_sheet": "WALCL",
     "on_rrp_balance": "RRPONTSYD",
     "fed_funds_rate": "FEDFUNDS",
@@ -32,6 +32,7 @@ FRED_SERIES = {
     "btc_usd": "CBBTCUSD",
     "gold_spot_fred": "GOLDAMGBD228NLBM",
     "wti_oil_fred": "DCOILWTICO",
+    "usd_cnh_fred": "DEXCHUS",
 }
 
 

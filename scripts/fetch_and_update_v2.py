@@ -133,7 +133,7 @@ def fetch_china_data() -> dict:
             cols = df.columns.tolist()
             net_col = [c for c in cols if '净买额' in str(c)][0]
             north_today = float(df.iloc[0][net_col])
-            north_3d = sum([float(df.iloc[i][net_col]) for i in range(min(3, len(df))])
+            north_3d = sum([float(df.iloc[i][net_col]) for i in range(min(3, len(df)))])
             result["north_money_3d"] = {"value": round(north_3d, 2), "name": "北向资金3日累计", "source": "AKShare"}
             result["north_money"] = {"value": round(north_today, 2), "name": "北向资金当日", "source": "AKShare"}
             print(f"  north_money_3d: {north_3d}亿")

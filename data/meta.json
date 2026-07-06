@@ -1,0 +1,31 @@
+{
+  "data_date": "2026-07-06",
+  "updated_at": "2026-07-06T09:06:48.346786",
+  "data_freshness": "fresh",
+  "source_status": {
+    "spx": "FRED",
+    "hs300": "unavailable",
+    "hsi": "unavailable",
+    "nk225": "unavailable",
+    "gold_spot": "unavailable",
+    "wti_oil": "FRED",
+    "usd_cnh": "FRED",
+    "usd_jpy": "unavailable",
+    "btc_usd": "FRED",
+    "vix": "FRED",
+    "move_idx": "unavailable",
+    "us_10y_yield": "FRED",
+    "us_2y_yield": "FRED",
+    "us_core_pce_yy": "FRED",
+    "us_cpi_yy": "FRED",
+    "us_ism_pmi": "unavailable",
+    "fed_balance_sheet": "FRED",
+    "on_rrp_balance": "FRED",
+    "fed_funds_rate": "FRED",
+    "dxy_idx": "FRED",
+    "hy_spread_oas": "FRED",
+    "ted_spread": "FRED"
+  },
+  "coverage": "15/22",
+  "version": "2"
+}
