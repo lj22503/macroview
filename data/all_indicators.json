@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-07-13T09:25:45.437404",
-    "data_date": "2026-07-13",
+    "updated_at": "2026-07-15T09:06:02.500989",
+    "data_date": "2026-07-15",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
     "bias": "RISK_ON",
-    "score": 0.8,
+    "score": 0.5,
     "factor_details": {}
   },
   "china": {
@@ -68,10 +68,10 @@
   },
   "fred": {
     "vix": {
-      "value": 15.84,
-      "source": "FRED",
-      "date": "2026-07-09",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "move_idx": {
       "value": null,
@@ -80,15 +80,15 @@
       "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 4.54,
+      "value": 4.62,
       "source": "FRED",
-      "date": "2026-07-09",
+      "date": "2026-07-13",
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.16,
+      "value": 4.26,
       "source": "FRED",
-      "date": "2026-07-09",
+      "date": "2026-07-13",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -98,9 +98,9 @@
       "quality": "live"
     },
     "us_cpi_yy": {
-      "value": 3.33979,
+      "value": 3.3256799999999997,
       "source": "FRED",
-      "date": "2026-05-01",
+      "date": "2026-06-01",
       "quality": "live"
     },
     "us_ism_pmi": {
@@ -116,9 +116,9 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.545,
+      "value": 0.278,
       "source": "FRED",
-      "date": "2026-07-10",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "fed_funds_rate": {
@@ -128,15 +128,15 @@
       "quality": "live"
     },
     "dxy_idx": {
-      "value": 120.6902,
+      "value": 120.5046,
       "source": "FRED",
-      "date": "2026-07-02",
+      "date": "2026-07-10",
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 270.0,
+      "value": 269.0,
       "source": "FRED",
-      "date": "2026-07-09",
+      "date": "2026-07-13",
       "quality": "live"
     },
     "ted_spread": {
@@ -146,47 +146,47 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7575.39,
-      "source": "FRED",
-      "date": "2026-07-10",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "btc_usd": {
-      "value": 63809.21,
+      "value": 64967.74,
       "source": "FRED",
-      "date": "2026-07-12",
+      "date": "2026-07-14",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7575.39,
-      "source": "FRED",
-      "date": "2026-07-10",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "hs300": {
-      "value": 4780.787,
+      "value": 4796.502,
       "source": "AKShare",
-      "date": "2026-07-10",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "hsi": {
-      "value": 24175.11914,
+      "value": 24340.73047,
       "source": "AKShare",
-      "date": "2026-07-10",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "nk225": {
-      "value": 94.55,
+      "value": 93.89,
       "source": "AKShare(EWJ)",
-      "date": "2026-07-10",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "gold_spot": {
-      "value": 891.66,
+      "value": 888.68,
       "source": "AKShare",
-      "date": "2026-07-08",
+      "date": "2026-07-12",
       "quality": "live"
     },
     "wti_oil": {
@@ -196,21 +196,21 @@
       "quality": "live"
     },
     "usd_cnh": {
-      "value": 6.7972,
+      "value": 6.799,
       "source": "AKShare",
-      "date": "2026-07-13",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "usd_jpy": {
-      "value": 162.14,
+      "value": 162.46,
       "source": "AKShare(BOC)",
-      "date": "2026-07-13",
+      "date": "2026-07-14",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 63809.21,
+      "value": 64967.74,
       "source": "FRED",
-      "date": "2026-07-12",
+      "date": "2026-07-14",
       "quality": "live"
     }
   }
