@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-07-15T09:06:02.500989",
-    "data_date": "2026-07-15",
+    "updated_at": "2026-07-16T09:27:37.476712",
+    "data_date": "2026-07-16",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
-    "bias": "RISK_ON",
-    "score": 0.5,
+    "bias": "NEUTRAL",
+    "score": 0.0,
     "factor_details": {}
   },
   "china": {
@@ -32,10 +32,10 @@
       "source": "AKShare"
     },
     "cn_m1_m2_spread": {
-      "value": -3.1,
-      "m1_yoy": 5.5,
-      "m2_yoy": 8.6,
-      "spread": -3.1,
+      "value": -4.0,
+      "m1_yoy": 4.0,
+      "m2_yoy": 8.0,
+      "spread": -4.0,
       "trend": "持平",
       "name": "M1-M2剪刀差",
       "source": "AKShare"
@@ -80,28 +80,28 @@
       "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 4.62,
-      "source": "FRED",
-      "date": "2026-07-13",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_2y_yield": {
-      "value": 4.26,
-      "source": "FRED",
-      "date": "2026-07-13",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_core_pce_yy": {
-      "value": 1.3008199999999999,
-      "source": "FRED",
-      "date": "2026-05-01",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_cpi_yy": {
-      "value": 3.3256799999999997,
-      "source": "FRED",
-      "date": "2026-06-01",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_ism_pmi": {
       "value": 48.7,
@@ -110,40 +110,40 @@
       "quality": "live"
     },
     "fed_balance_sheet": {
-      "value": 6735609.0,
-      "source": "FRED",
-      "date": "2026-07-08",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "on_rrp_balance": {
-      "value": 0.278,
-      "source": "FRED",
-      "date": "2026-07-14",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "fed_funds_rate": {
-      "value": 3.63,
-      "source": "FRED",
-      "date": "2026-06-01",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "dxy_idx": {
-      "value": 120.5046,
-      "source": "FRED",
-      "date": "2026-07-10",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "hy_spread_oas": {
-      "value": 269.0,
-      "source": "FRED",
-      "date": "2026-07-13",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "ted_spread": {
-      "value": 0.09,
-      "source": "FRED",
-      "date": "2022-01-21",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "spx": {
       "value": null,
@@ -152,10 +152,10 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 64967.74,
-      "source": "FRED",
-      "date": "2026-07-14",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     }
   },
   "assets": {
@@ -166,52 +166,52 @@
       "quality": "fallback"
     },
     "hs300": {
-      "value": 4796.502,
+      "value": 4786.783,
       "source": "AKShare",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "quality": "live"
     },
     "hsi": {
-      "value": 24340.73047,
+      "value": 24681.10156,
       "source": "AKShare",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "quality": "live"
     },
     "nk225": {
-      "value": 93.89,
+      "value": 93.5,
       "source": "AKShare(EWJ)",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "quality": "live"
     },
     "gold_spot": {
-      "value": 888.68,
+      "value": 877.1,
       "source": "AKShare",
-      "date": "2026-07-12",
+      "date": "2026-07-13",
       "quality": "live"
     },
     "wti_oil": {
-      "value": 69.6,
-      "source": "FRED",
-      "date": "2026-07-06",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "usd_cnh": {
-      "value": 6.799,
+      "value": 6.7909,
       "source": "AKShare",
-      "date": "2026-07-14",
+      "date": "2026-07-16",
       "quality": "live"
     },
     "usd_jpy": {
-      "value": 162.46,
+      "value": 162.4,
       "source": "AKShare(BOC)",
-      "date": "2026-07-14",
+      "date": "2026-07-16",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 64967.74,
-      "source": "FRED",
-      "date": "2026-07-14",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     }
   }
 }
