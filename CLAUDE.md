@@ -1,5 +1,7 @@
 # 宏观仪表盘 CLAUDE.md
 
+> **命名**：本项目 GitHub 仓库名 `lj22503/macroview`，本地目录 `D:\claudework\宏观仪表盘`（中文）是历史遗留名。统一以 GitHub 名 **macroview** 为准。
+
 ## 项目基本信息
 
 - **项目名称**：宏观仪表盘 (Macro Dashboard)
