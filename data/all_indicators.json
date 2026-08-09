@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-08-08T09:06:04.216304",
-    "data_date": "2026-08-08",
+    "updated_at": "2026-08-09T09:04:44.179256",
+    "data_date": "2026-08-09",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
     "bias": "RISK_ON",
-    "score": 0.8,
+    "score": 0.5,
     "factor_details": {}
   },
   "china": {
@@ -68,10 +68,10 @@
   },
   "fred": {
     "vix": {
-      "value": 15.15,
-      "source": "FRED",
-      "date": "2026-08-06",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "move_idx": {
       "value": null,
@@ -152,9 +152,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 64877.34,
+      "value": 64910.12,
       "source": "FRED",
-      "date": "2026-08-07",
+      "date": "2026-08-08",
       "quality": "live"
     }
   },
@@ -198,7 +198,7 @@
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-08-08",
+      "date": "2026-08-09",
       "quality": "live"
     },
     "usd_jpy": {
@@ -208,9 +208,9 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 64877.34,
+      "value": 64910.12,
       "source": "FRED",
-      "date": "2026-08-07",
+      "date": "2026-08-08",
       "quality": "live"
     }
   }
