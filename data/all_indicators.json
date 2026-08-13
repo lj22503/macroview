@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-08-11T09:06:32.074299",
-    "data_date": "2026-08-11",
+    "updated_at": "2026-08-13T09:03:31.921213",
+    "data_date": "2026-08-13",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
-    "bias": "RISK_ON",
-    "score": 0.8,
+    "bias": "NEUTRAL",
+    "score": 0.3,
     "factor_details": {}
   },
   "china": {
@@ -68,9 +68,9 @@
   },
   "fred": {
     "vix": {
-      "value": 14.9,
+      "value": 15.28,
       "source": "FRED",
-      "date": "2026-08-07",
+      "date": "2026-08-11",
       "quality": "live"
     },
     "move_idx": {
@@ -80,15 +80,15 @@
       "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 4.65,
-      "source": "FRED",
-      "date": "2026-08-07",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_2y_yield": {
-      "value": 4.19,
+      "value": 4.22,
       "source": "FRED",
-      "date": "2026-08-07",
+      "date": "2026-08-11",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -98,9 +98,9 @@
       "quality": "live"
     },
     "us_cpi_yy": {
-      "value": 3.3256799999999997,
+      "value": 3.32813,
       "source": "FRED",
-      "date": "2026-06-01",
+      "date": "2026-07-01",
       "quality": "live"
     },
     "us_ism_pmi": {
@@ -116,9 +116,9 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.975,
+      "value": 0.725,
       "source": "FRED",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     },
     "fed_funds_rate": {
@@ -128,16 +128,16 @@
       "quality": "live"
     },
     "dxy_idx": {
-      "value": 119.0649,
-      "source": "FRED",
-      "date": "2026-08-07",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "hy_spread_oas": {
-      "value": 270.0,
-      "source": "FRED",
-      "date": "2026-08-07",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "ted_spread": {
       "value": 0.09,
@@ -146,35 +146,35 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7753.11,
+      "value": 7748.5,
       "source": "FRED",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 63876.26,
+      "value": 63402.49,
       "source": "FRED",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7753.11,
+      "value": 7748.5,
       "source": "FRED",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     },
     "hs300": {
-      "value": 4702.025,
+      "value": 4690.917,
       "source": "AKShare",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     },
     "hsi": {
-      "value": 25937.49023,
+      "value": 25440.16992,
       "source": "AKShare",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     },
     "nk225": {
@@ -184,21 +184,21 @@
       "quality": "fallback"
     },
     "gold_spot": {
-      "value": 925.22,
+      "value": 961.33,
       "source": "AKShare",
-      "date": "2026-08-06",
+      "date": "2026-08-10",
       "quality": "live"
     },
     "wti_oil": {
-      "value": 81.96,
+      "value": 84.77,
       "source": "FRED",
-      "date": "2026-08-03",
+      "date": "2026-08-11",
       "quality": "live"
     },
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-08-11",
+      "date": "2026-08-13",
       "quality": "live"
     },
     "usd_jpy": {
@@ -208,9 +208,9 @@
       "quality": "fallback"
     },
     "btc_usd": {
-      "value": 63876.26,
+      "value": 63402.49,
       "source": "FRED",
-      "date": "2026-08-10",
+      "date": "2026-08-12",
       "quality": "live"
     }
   }
