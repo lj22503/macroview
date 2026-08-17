@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-08-15T09:20:32.641695",
-    "data_date": "2026-08-15",
+    "updated_at": "2026-08-17T09:24:27.995049",
+    "data_date": "2026-08-17",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
-    "bias": "NEUTRAL",
-    "score": 0.0,
+    "bias": "RISK_ON",
+    "score": 0.8,
     "factor_details": {}
   },
   "china": {
@@ -68,10 +68,10 @@
   },
   "fred": {
     "vix": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 14.63,
+      "source": "FRED",
+      "date": "2026-08-13",
+      "quality": "live"
     },
     "move_idx": {
       "value": null,
@@ -80,28 +80,28 @@
       "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 4.63,
+      "source": "FRED",
+      "date": "2026-08-13",
+      "quality": "live"
     },
     "us_2y_yield": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 4.15,
+      "source": "FRED",
+      "date": "2026-08-13",
+      "quality": "live"
     },
     "us_core_pce_yy": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 1.30266,
+      "source": "FRED",
+      "date": "2026-06-01",
+      "quality": "live"
     },
     "us_cpi_yy": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 3.32813,
+      "source": "FRED",
+      "date": "2026-07-01",
+      "quality": "live"
     },
     "us_ism_pmi": {
       "value": 48.7,
@@ -110,60 +110,60 @@
       "quality": "live"
     },
     "fed_balance_sheet": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 6759955.0,
+      "source": "FRED",
+      "date": "2026-08-12",
+      "quality": "live"
     },
     "on_rrp_balance": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 0.25,
+      "source": "FRED",
+      "date": "2026-08-14",
+      "quality": "live"
     },
     "fed_funds_rate": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 3.63,
+      "source": "FRED",
+      "date": "2026-07-01",
+      "quality": "live"
     },
     "dxy_idx": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 119.0649,
+      "source": "FRED",
+      "date": "2026-08-07",
+      "quality": "live"
     },
     "hy_spread_oas": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 271.0,
+      "source": "FRED",
+      "date": "2026-08-13",
+      "quality": "live"
     },
     "ted_spread": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 0.09,
+      "source": "FRED",
+      "date": "2022-01-21",
+      "quality": "live"
     },
     "spx": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 7785.76,
+      "source": "FRED",
+      "date": "2026-08-14",
+      "quality": "live"
     },
     "btc_usd": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 62859.47,
+      "source": "FRED",
+      "date": "2026-08-16",
+      "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 7785.76,
+      "source": "FRED",
+      "date": "2026-08-14",
+      "quality": "live"
     },
     "hs300": {
       "value": 4665.881,
@@ -190,28 +190,28 @@
       "quality": "live"
     },
     "wti_oil": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 84.77,
+      "source": "FRED",
+      "date": "2026-08-11",
+      "quality": "live"
     },
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-08-15",
+      "date": "2026-08-17",
       "quality": "live"
     },
     "usd_jpy": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 157.54,
+      "source": "FRED",
+      "date": "2026-08-07",
+      "quality": "live"
     },
     "btc_usd": {
-      "value": null,
-      "source": "unavailable",
-      "date": null,
-      "quality": "fallback"
+      "value": 62859.47,
+      "source": "FRED",
+      "date": "2026-08-16",
+      "quality": "live"
     }
   }
 }
