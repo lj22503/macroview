@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-08-24T09:26:31.115645",
-    "data_date": "2026-08-24",
+    "updated_at": "2026-08-25T09:15:16.662804",
+    "data_date": "2026-08-25",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -46,7 +46,7 @@
       "source": "AKShare"
     },
     "cn_10y_yield": {
-      "value": 1.6839,
+      "value": 1.6794,
       "name": "10Y中债收益率",
       "source": "AKShare"
     },
@@ -68,27 +68,27 @@
   },
   "fred": {
     "vix": {
-      "value": 16.01,
+      "value": 15.13,
       "source": "FRED",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "move_idx": {
-      "value": 73.399,
+      "value": 73.9751,
       "source": "YahooChart",
-      "date": "2026-08-24",
+      "date": "2026-08-25",
       "quality": "live"
     },
     "us_10y_yield": {
-      "value": 4.69,
+      "value": 4.74,
       "source": "FRED",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.19,
+      "value": 4.24,
       "source": "FRED",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -116,9 +116,9 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.2,
+      "value": 0.38,
       "source": "FRED",
-      "date": "2026-08-21",
+      "date": "2026-08-24",
       "quality": "live"
     },
     "fed_funds_rate": {
@@ -128,15 +128,15 @@
       "quality": "live"
     },
     "dxy_idx": {
-      "value": 118.9028,
+      "value": 118.0628,
       "source": "FRED",
-      "date": "2026-08-14",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 275.0,
+      "value": 270.0,
       "source": "FRED",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "ted_spread": {
@@ -146,47 +146,47 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7674.37,
+      "value": 7652.86,
       "source": "FRED",
-      "date": "2026-08-21",
+      "date": "2026-08-24",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 77637.69,
+      "value": 78981.39,
       "source": "FRED",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7674.37,
+      "value": 7652.86,
       "source": "FRED",
-      "date": "2026-08-21",
-      "quality": "live"
-    },
-    "hs300": {
-      "value": 4618.895,
-      "source": "AKShare",
-      "date": "2026-08-21",
-      "quality": "live"
-    },
-    "hsi": {
-      "value": 26009.45898,
-      "source": "AKShare",
-      "date": "2026-08-21",
-      "quality": "live"
-    },
-    "nk225": {
-      "value": 65919.22,
-      "source": "YahooChart",
       "date": "2026-08-24",
       "quality": "live"
     },
-    "gold_spot": {
-      "value": 970.5,
+    "hs300": {
+      "value": 4563.127,
       "source": "AKShare",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
+      "quality": "live"
+    },
+    "hsi": {
+      "value": 25517.33008,
+      "source": "AKShare",
+      "date": "2026-08-24",
+      "quality": "live"
+    },
+    "nk225": {
+      "value": 65174.26,
+      "source": "YahooChart",
+      "date": "2026-08-25",
+      "quality": "live"
+    },
+    "gold_spot": {
+      "value": 977.32,
+      "source": "AKShare",
+      "date": "2026-08-20",
       "quality": "live"
     },
     "wti_oil": {
@@ -198,19 +198,19 @@
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-08-24",
+      "date": "2026-08-25",
       "quality": "live"
     },
     "usd_jpy": {
-      "value": 159.21,
+      "value": 158.91,
       "source": "FRED",
-      "date": "2026-08-14",
+      "date": "2026-08-21",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 77637.69,
+      "value": 78981.39,
       "source": "FRED",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "quality": "live"
     }
   }
