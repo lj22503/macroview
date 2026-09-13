@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-09-12T09:18:32.308036",
-    "data_date": "2026-09-12",
+    "updated_at": "2026-09-13T09:04:00.590221",
+    "data_date": "2026-09-13",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -76,7 +76,7 @@
     "move_idx": {
       "value": 82.2068,
       "source": "YahooChart",
-      "date": "2026-09-12",
+      "date": "2026-09-13",
       "quality": "live"
     },
     "us_10y_yield": {
@@ -152,9 +152,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 77276.5,
+      "value": 77270.73,
       "source": "FRED",
-      "date": "2026-09-11",
+      "date": "2026-09-12",
       "quality": "live"
     }
   },
@@ -180,7 +180,7 @@
     "nk225": {
       "value": 64011.34,
       "source": "YahooChart",
-      "date": "2026-09-12",
+      "date": "2026-09-13",
       "quality": "live"
     },
     "gold_spot": {
@@ -198,7 +198,7 @@
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-09-12",
+      "date": "2026-09-13",
       "quality": "live"
     },
     "usd_jpy": {
@@ -208,9 +208,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 77276.5,
+      "value": 77270.73,
       "source": "FRED",
-      "date": "2026-09-11",
+      "date": "2026-09-12",
       "quality": "live"
     }
   }
