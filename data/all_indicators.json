@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated_at": "2026-09-28T09:08:09.664440",
-    "data_date": "2026-09-28",
+    "updated_at": "2026-09-30T09:02:39.628424",
+    "data_date": "2026-09-30",
     "status": "success",
     "data_freshness": "fresh"
   },
   "overview": {
     "bias": "RISK_ON",
-    "score": 0.8,
+    "score": 0.9,
     "factor_details": {}
   },
   "china": {
@@ -46,7 +46,7 @@
       "source": "AKShare"
     },
     "cn_10y_yield": {
-      "value": null,
+      "value": 1.667,
       "name": "10Y中债收益率",
       "source": "AKShare"
     },
@@ -68,27 +68,27 @@
   },
   "fred": {
     "vix": {
-      "value": 14.21,
-      "source": "FRED",
-      "date": "2026-09-22",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "move_idx": {
-      "value": 96.003,
+      "value": 106.6027,
       "source": "YahooChart",
-      "date": "2026-09-28",
+      "date": "2026-09-30",
       "quality": "live"
     },
     "us_10y_yield": {
-      "value": 5.18,
+      "value": 5.24,
       "source": "FRED",
-      "date": "2026-09-24",
+      "date": "2026-09-28",
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.87,
+      "value": 4.92,
       "source": "FRED",
-      "date": "2026-09-24",
+      "date": "2026-09-28",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -116,10 +116,10 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.576,
-      "source": "FRED",
-      "date": "2026-09-25",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "fed_funds_rate": {
       "value": 3.63,
@@ -128,15 +128,15 @@
       "quality": "live"
     },
     "dxy_idx": {
-      "value": 119.5133,
+      "value": 120.33,
       "source": "FRED",
-      "date": "2026-09-18",
+      "date": "2026-09-25",
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 280.0,
+      "value": 302.0,
       "source": "FRED",
-      "date": "2026-09-24",
+      "date": "2026-09-28",
       "quality": "live"
     },
     "ted_spread": {
@@ -146,47 +146,47 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7743.41,
-      "source": "FRED",
-      "date": "2026-09-25",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "btc_usd": {
-      "value": 84553.91,
+      "value": 83636.7,
       "source": "FRED",
-      "date": "2026-09-27",
+      "date": "2026-09-29",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7743.41,
-      "source": "FRED",
-      "date": "2026-09-25",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "hs300": {
-      "value": 4439.144,
+      "value": 4345.209,
       "source": "AKShare",
-      "date": "2026-09-24",
+      "date": "2026-09-29",
       "quality": "live"
     },
     "hsi": {
-      "value": 24510.08984,
+      "value": 24523.57031,
       "source": "AKShare",
-      "date": "2026-09-25",
+      "date": "2026-09-29",
       "quality": "live"
     },
     "nk225": {
-      "value": 66872.13,
+      "value": 66154.49,
       "source": "YahooChart",
-      "date": "2026-09-28",
+      "date": "2026-09-30",
       "quality": "live"
     },
     "gold_spot": {
-      "value": 936.31,
+      "value": 911.7,
       "source": "AKShare",
-      "date": "2026-09-22",
+      "date": "2026-09-27",
       "quality": "live"
     },
     "wti_oil": {
@@ -198,19 +198,19 @@
     "usd_cnh": {
       "value": NaN,
       "source": "AKShare",
-      "date": "2026-09-28",
+      "date": "2026-09-30",
       "quality": "live"
     },
     "usd_jpy": {
-      "value": 156.87,
+      "value": 157.18,
       "source": "FRED",
-      "date": "2026-09-18",
+      "date": "2026-09-25",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 84553.91,
+      "value": 83636.7,
       "source": "FRED",
-      "date": "2026-09-27",
+      "date": "2026-09-29",
       "quality": "live"
     }
   }
