@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-10-02T09:01:19.279245",
-    "data_date": "2026-10-02",
+    "updated_at": "2026-10-04T09:01:10.066318",
+    "data_date": "2026-10-04",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -13,27 +13,27 @@
   "china": {},
   "fred": {
     "vix": {
-      "value": 16.34,
+      "value": 16.39,
       "source": "FRED",
-      "date": "2026-09-30",
+      "date": "2026-10-01",
       "quality": "live"
     },
     "move_idx": {
-      "value": 108.1252,
-      "source": "YahooChart",
-      "date": "2026-10-02",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "us_10y_yield": {
-      "value": 5.29,
+      "value": 5.24,
       "source": "FRED",
-      "date": "2026-09-30",
+      "date": "2026-10-01",
       "quality": "live"
     },
     "us_2y_yield": {
-      "value": 4.88,
+      "value": 4.78,
       "source": "FRED",
-      "date": "2026-09-30",
+      "date": "2026-10-01",
       "quality": "live"
     },
     "us_core_pce_yy": {
@@ -61,9 +61,9 @@
       "quality": "live"
     },
     "on_rrp_balance": {
-      "value": 0.35,
+      "value": 1.501,
       "source": "FRED",
-      "date": "2026-10-01",
+      "date": "2026-10-02",
       "quality": "live"
     },
     "fed_funds_rate": {
@@ -79,9 +79,9 @@
       "quality": "live"
     },
     "hy_spread_oas": {
-      "value": 312.0,
+      "value": 324.0,
       "source": "FRED",
-      "date": "2026-09-30",
+      "date": "2026-10-01",
       "quality": "live"
     },
     "ted_spread": {
@@ -91,23 +91,23 @@
       "quality": "live"
     },
     "spx": {
-      "value": 7666.45,
+      "value": 7722.72,
       "source": "FRED",
-      "date": "2026-10-01",
+      "date": "2026-10-02",
       "quality": "live"
     },
     "btc_usd": {
-      "value": 84759.64,
+      "value": 84813.71,
       "source": "FRED",
-      "date": "2026-10-01",
+      "date": "2026-10-03",
       "quality": "live"
     }
   },
   "assets": {
     "spx": {
-      "value": 7666.45,
+      "value": 7722.72,
       "source": "FRED",
-      "date": "2026-10-01",
+      "date": "2026-10-02",
       "quality": "live"
     },
     "hs300": {
@@ -123,10 +123,10 @@
       "quality": "fallback"
     },
     "nk225": {
-      "value": 68452.07,
-      "source": "YahooChart",
-      "date": "2026-10-02",
-      "quality": "live"
+      "value": null,
+      "source": "unavailable",
+      "date": null,
+      "quality": "fallback"
     },
     "gold_spot": {
       "value": null,
@@ -153,9 +153,9 @@
       "quality": "live"
     },
     "btc_usd": {
-      "value": 84759.64,
+      "value": 84813.71,
       "source": "FRED",
-      "date": "2026-10-01",
+      "date": "2026-10-03",
       "quality": "live"
     }
   }
