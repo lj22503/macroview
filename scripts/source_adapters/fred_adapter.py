@@ -33,6 +33,7 @@ FRED_SERIES = {
     "gold_spot_fred": "GOLDAMGBD228NLBM",
     "wti_oil_fred": "DCOILWTICO",
     "usd_cnh_fred": "DEXCHUS",
+    "usd_jpy": "DEXJPUS",
 }
 
 

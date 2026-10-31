@@ -117,7 +117,7 @@ class AkshareAdapter(SourceAdapter):
     def fetch_all(self) -> dict[str, SourceResult]:
         symbols = {
             "hs300": "hs300", "hsi": "hsi",
-            "usd_cnh_ak": "usd_cnh_ak", "nk225_ak": "nk225",
+            "usd_cnh_ak": "usd_cnh_ak", "nk225": "nk225",
             "gold_spot_ak": "gold_spot_ak",
             "us_ism_pmi_ak": "us_ism_pmi_ak",
         }

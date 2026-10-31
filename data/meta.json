@@ -1,19 +1,19 @@
 {
-  "data_date": "2026-07-30",
-  "updated_at": "2026-07-30T09:05:08.779946",
+  "data_date": "2026-10-31",
+  "updated_at": "2026-10-31T09:03:07.932779",
   "data_freshness": "fresh",
   "source_status": {
     "spx": "FRED",
     "hs300": "AKShare",
     "hsi": "AKShare",
-    "nk225": "unavailable",
+    "nk225": "YahooChart",
     "gold_spot": "AKShare",
     "wti_oil": "FRED",
     "usd_cnh": "AKShare",
-    "usd_jpy": "unavailable",
+    "usd_jpy": "FRED",
     "btc_usd": "FRED",
     "vix": "FRED",
-    "move_idx": "unavailable",
+    "move_idx": "YahooChart",
     "us_10y_yield": "FRED",
     "us_2y_yield": "FRED",
     "us_core_pce_yy": "FRED",
@@ -26,6 +26,6 @@
     "hy_spread_oas": "FRED",
     "ted_spread": "FRED"
   },
-  "coverage": "19/22",
+  "coverage": "22/22",
   "version": "2"
 }

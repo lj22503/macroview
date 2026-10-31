@@ -25,9 +25,6 @@ jobs:
       - name: Run data fetch
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_OWNER: lj22503
-          GITHUB_REPO: macroview
         run: |
           cd scripts
           python fetch_and_update_v2.py

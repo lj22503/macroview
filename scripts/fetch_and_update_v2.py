@@ -3,11 +3,15 @@
 拉取 FRED + yfinance + AKShare → merge → 分层存储 → 推送 GitHub
 """
 
-import base64, os, sys, json, requests
+import base64, os, sys, json, requests, socket
 from datetime import date, datetime
 from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
+
+# 止血：akshare/requests 内部调用无显式超时，网络抖动时可能无限挂起；
+# 设置全局 socket 超时，单接口 30s 未返回即抛异常被各 try/except 捕获跳过。
+socket.setdefaulttimeout(30)
 
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -18,8 +22,8 @@ DATA_DIR = SCRIPT_DIR.parent / "data"
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from source_adapters.fred_adapter import fetch_all_fred
-from source_adapters.yfinance_adapter import fetch_all_yfinance
 from source_adapters.akshare_adapter import fetch_all_akshare
+from source_adapters.yahoo_chart_adapter import fetch_yahoo_assets
 import merge, storage
 
 FRED_API_KEY = os.getenv("FRED_API_KEY", "")
@@ -108,19 +112,16 @@ def fetch_china_data() -> dict:
         print(f"  [ERROR] LPR: {e}")
         result["cn_lpr_1y"] = {"value": None, "name": "1年期LPR", "source": "AKShare"}
 
-    # 中债收益率
+    # 中债收益率（改用 bond_zh_us_rate：bond_china_yield 已停更至2021，且列名"曲线名称"原匹配"债券类型"永远失败）
     try:
-        df = ak.bond_china_yield()
+        df = ak.bond_zh_us_rate()
         if df is not None and len(df) > 0:
-            for i in range(len(df)):
-                row = df.iloc[i]
-                if '国债' in str(row.get('债券类型', '')):
-                    val_10y = row.get('10年')
-                    if pd.notna(val_10y):
-                        result["cn_10y_yield"] = {"value": float(val_10y) / 100, "name": "10Y中债收益率", "source": "AKShare"}
-                        print(f"  cn_10y_yield: {result['cn_10y_yield']['value']}%")
-                        break
-            if "cn_10y_yield" not in result:
+            last = df.iloc[-1]
+            val_10y = last.get('中国国债收益率10年')
+            if pd.notna(val_10y):
+                result["cn_10y_yield"] = {"value": float(val_10y), "name": "10Y中债收益率", "source": "AKShare"}
+                print(f"  cn_10y_yield: {result['cn_10y_yield']['value']}%")
+            else:
                 result["cn_10y_yield"] = {"value": None, "name": "10Y中债收益率", "source": "AKShare"}
     except Exception as e:
         print(f"  [ERROR] 中债收益率: {e}")
@@ -142,8 +143,22 @@ def fetch_china_data() -> dict:
         result["north_money_3d"] = {"value": None, "name": "北向资金3日累计", "source": "AKShare"}
         result["north_money"] = {"value": None, "name": "北向资金当日", "source": "AKShare"}
 
-    print("  [INFO] 社融数据跳过（API不稳定）")
-    result["cn_social_financing"] = {"value": None, "name": "社融增量", "source": "AKShare"}
+    # 社融增量（macro_china_shrzgm 可用，单位：亿元）
+    try:
+        df = ak.macro_china_shrzgm()
+        if df is not None and len(df) > 0:
+            last = df.iloc[-1]
+            val = last.get('社会融资规模增量')
+            if pd.notna(val):
+                result["cn_social_financing"] = {"value": float(val), "name": "社融增量", "source": "AKShare"}
+                print(f"  cn_social_financing: {result['cn_social_financing']['value']} 亿元 ({last.get('月份')})")
+            else:
+                result["cn_social_financing"] = {"value": None, "name": "社融增量", "source": "AKShare"}
+        else:
+            result["cn_social_financing"] = {"value": None, "name": "社融增量", "source": "AKShare"}
+    except Exception as e:
+        print(f"  [ERROR] 社融增量: {e}")
+        result["cn_social_financing"] = {"value": None, "name": "社融增量", "source": "AKShare"}
     return result
 
 
@@ -211,10 +226,10 @@ def main():
     for k, r in fred_results.items():
         print(f"  {k}: {r.value} ({r.source}, {r.quality})")
 
-    print("\n[yfinance] 拉取 yfinance 数据...")
-    yf_results = fetch_all_yfinance()
+    print("\n[yfinance] yfinance 已放弃直连（429），美股指数由 FRED/AKShare 覆盖；nk225/move_idx 由 Yahoo Chart API 直连补充")
+    yf_results = fetch_yahoo_assets()
     for k, r in yf_results.items():
-        print(f"  {k}: {r.value} ({r.source})" if r.is_valid() else f"  {k}: NULL ({r.quality})")
+        print(f"  {k}: {r.value} ({r.source}, {r.quality})" if r.is_valid() else f"  {k}: NULL ({r.error})")
 
     print("\n[AKShare] 拉取 AKShare 资产备用...")
     ak_results = fetch_all_akshare()
