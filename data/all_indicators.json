@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated_at": "2026-11-01T13:42:25.863954",
-    "data_date": "2026-11-01",
+    "updated_at": "2026-11-02T06:35:54.043243",
+    "data_date": "2026-11-02",
     "status": "success",
     "data_freshness": "fresh"
   },
@@ -21,7 +21,7 @@
     "move_idx": {
       "value": 100.1976,
       "source": "YahooChart",
-      "date": "2026-11-01",
+      "date": "2026-11-02",
       "quality": "live"
     },
     "us_10y_yield": {
@@ -123,9 +123,9 @@
       "quality": "fallback"
     },
     "nk225": {
-      "value": 63290.11,
+      "value": 63031.49,
       "source": "YahooChart",
-      "date": "2026-11-01",
+      "date": "2026-11-02",
       "quality": "live"
     },
     "gold_spot": {
