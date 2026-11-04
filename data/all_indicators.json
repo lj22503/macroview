@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-11-04T06:51:22.663130",
+    "updated_at": "2026-11-04T14:47:34.334802",
     "data_date": "2026-11-04",
     "status": "success",
     "data_freshness": "fresh"
@@ -19,7 +19,7 @@
       "quality": "fallback"
     },
     "move_idx": {
-      "value": 99.97,
+      "value": 96.0032,
       "source": "YahooChart",
       "date": "2026-11-04",
       "quality": "live"
